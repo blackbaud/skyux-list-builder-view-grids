@@ -1,17 +1,16 @@
 import {
   NgModule
 } from '@angular/core';
-
 import {
-  SkySampleModule
-} from './public';
+  SkyListViewGridModule
+} from './public/modules/list-view-grid/list-view-grid.module';
 
 @NgModule({
   imports: [
-    SkySampleModule
+    SkyListViewGridModule
   ],
   exports: [
-    SkySampleModule
+    SkyListViewGridModule
   ],
   providers: [],
   entryComponents: []
