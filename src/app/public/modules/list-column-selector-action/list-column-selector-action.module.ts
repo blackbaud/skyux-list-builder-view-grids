@@ -5,10 +5,9 @@ import {
   CommonModule
 } from '@angular/common';
 
-// TODO: is this right?
 import {
-  SkyResourcesModule
-} from '@blackbaud/skyux/dist/modules/resources/resources.module';
+  SkyI18nModule
+} from '@skyux/i18n';
 
 import {
   SkyIconModule
@@ -33,7 +32,7 @@ import {
   ],
   imports: [
     CommonModule,
-    SkyResourcesModule,
+    SkyI18nModule,
     SkyModalModule,
     SkyListSecondaryActionsModule,
     SkyListToolbarModule,

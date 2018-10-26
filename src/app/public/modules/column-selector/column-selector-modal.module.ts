@@ -9,10 +9,9 @@ import {
   SkyColumnSelectorComponent
 } from './column-selector-modal.component';
 
-// TODO: is this right?
 import {
-  SkyResourcesModule
-} from '@blackbaud/skyux/dist/modules/resources/resources.module';
+  SkyI18nModule
+} from '@skyux/i18n';
 
 import {
   SkyModalModule
@@ -35,7 +34,7 @@ import {
   ],
   imports: [
     CommonModule,
-    SkyResourcesModule,
+    SkyI18nModule,
     SkyModalModule,
     SkyListModule,
     SkyListToolbarModule,

@@ -16,6 +16,10 @@ import {
 } from '@skyux/list-builder/modules/list/state';
 
 import {
+  SkyListViewChecklistModule
+} from '@skyux/list-builder-view-checklist';
+
+import {
   SkyListViewGridModule
 } from './public/modules/list-view-grid/list-view-grid.module';
 import {
@@ -24,7 +28,6 @@ import {
 import {
   SkyListColumnSelectorActionModule
 } from './public/modules/list-column-selector-action';
-import { SkyListViewChecklistModule } from '@skyux/list-builder-view-checklist';
 
 @NgModule({
   imports: [
