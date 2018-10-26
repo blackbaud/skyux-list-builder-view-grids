@@ -3,7 +3,8 @@ import {
   inject,
   tick,
   TestBed,
-  ComponentFixture
+  ComponentFixture,
+  async
 } from '@angular/core/testing';
 import {
   RouterTestingModule
@@ -135,5 +136,14 @@ describe('Column selector component', () => {
       '2',
       '3'
     ]);
+  }));
+
+  it('should pass accessibility', async(() => {
+    nativeElement.querySelector('button').click();
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(fixture.nativeElement).toBeAccessible();
+    });
   }));
 });

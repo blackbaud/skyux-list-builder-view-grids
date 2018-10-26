@@ -23,7 +23,7 @@ import {
 
 import {
   expect
-} from '@blackbaud/skyux-builder/runtime/testing/browser';
+} from '@skyux-sdk/testing';
 
 import {
   ListState,
@@ -89,6 +89,19 @@ describe('List column selector action', () => {
     flush();
     tick();
     fixture.detectChanges();
+  }
+
+  function toggleSecondaryActionsDropdownAsync() {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+
+      const button = nativeElement.querySelector('.sky-dropdown-button') as HTMLButtonElement;
+      expect(button).toBeDefined();
+
+      button.click();
+      fixture.detectChanges();
+    });
   }
 
   function getButtonEl() {
@@ -244,6 +257,13 @@ describe('List column selector action', () => {
         fixture.detectChanges();
       });
     }));
+
+    it('should pass accessibility', async(() => {
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(fixture.nativeElement).toBeAccessible();
+      });
+    }));
   });
 
   describe('dropdown', () => {
@@ -377,6 +397,15 @@ describe('List column selector action', () => {
 
       flush();
       tick();
+    }));
+
+    it('should pass accessibility', async(() => {
+      toggleSecondaryActionsDropdownAsync();
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(fixture.nativeElement).toBeAccessible();
+      });
     }));
   });
 });
