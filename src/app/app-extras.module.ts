@@ -1,21 +1,30 @@
 import {
   NgModule
 } from '@angular/core';
-import {
-  SkyListViewGridModule
-} from './public/modules/list-view-grid/list-view-grid.module';
 
 import {
   SkyGridModule
 } from '@skyux/grids';
-import {
-  SkyListModule
-} from '@skyux/list-builder';
 
+import {
+  SkyListModule,
+  SkyListToolbarModule
+} from '@skyux/list-builder';
 import {
   ListStateDispatcher,
   ListState
 } from '@skyux/list-builder/modules/list/state';
+
+import {
+  SkyListViewGridModule
+} from './public/modules/list-view-grid/list-view-grid.module';
+import {
+  SkyColumnSelectorModule
+} from './public/modules/column-selector';
+import {
+  SkyListColumnSelectorActionModule
+} from './public/modules/list-column-selector-action';
+import { SkyListViewChecklistModule } from '@skyux/list-builder-view-checklist';
 
 @NgModule({
   imports: [
@@ -26,7 +35,11 @@ import {
   exports: [
     SkyGridModule,
     SkyListModule,
-    SkyListViewGridModule
+    SkyListViewGridModule,
+    SkyColumnSelectorModule,
+    SkyListColumnSelectorActionModule,
+    SkyListToolbarModule,
+    SkyListViewChecklistModule
   ],
   providers: [
     ListState,
