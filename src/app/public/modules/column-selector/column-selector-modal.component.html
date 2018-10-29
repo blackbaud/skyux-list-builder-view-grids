@@ -1,6 +1,6 @@
 <sky-modal>
   <sky-modal-header>
-    {{'grid_column_picker_header' | skyAppResources}}
+    {{'skyux_grid_column_picker_header' | skyLibResources}}
   </sky-modal-header>
   <sky-modal-content>
     <sky-list #list
@@ -8,7 +8,7 @@
       [selectedIds]="context.selectedColumnIds"
       (selectedIdsChange)="selectedColumnsChange($event)">
       <sky-list-toolbar
-        [placeholder]="'grid_column_picker_search_placeholder' | skyAppResources">
+        [placeholder]="'skyux_grid_column_picker_search_placeholder' | skyLibResources">
       </sky-list-toolbar>
 
       <sky-list-view-checklist label="heading" description="description">
@@ -20,13 +20,13 @@
       sky-cmp-id="apply-changes"
       class="sky-btn sky-btn-primary"
       (click)="applyChanges()">
-      {{'grid_column_picker_submit' | skyAppResources}}
+      {{'skyux_grid_column_picker_submit' | skyLibResources}}
     </button>
     <button
       sky-cmp-id="cancel"
       class="sky-btn sky-btn-link"
       (click)="cancelChanges()">
-      {{'grid_column_picker_cancel' | skyAppResources}}
+      {{'skyux_grid_column_picker_cancel' | skyLibResources}}
     </button>
   </sky-modal-footer>
 </sky-modal>
