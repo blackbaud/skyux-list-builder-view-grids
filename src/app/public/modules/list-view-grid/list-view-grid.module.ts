@@ -1,6 +1,7 @@
 import {
   NgModule
 } from '@angular/core';
+
 import {
   CommonModule
 } from '@angular/common';
@@ -14,11 +15,20 @@ import {
 } from '@skyux/grids/modules/grid/grid.module';
 
 import {
-  SkyListViewGridComponent
-} from './list-view-grid.component';
-import {
   SkyListViewGridResourcesModule
 } from '../shared/list-view-grid-resources.module';
+
+import {
+  SkyListColumnSelectorActionModule
+} from '../list-column-selector-action';
+
+import {
+  SkyColumnSelectorModule
+} from '../column-selector';
+
+import {
+  SkyListViewGridComponent
+} from './list-view-grid.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +41,9 @@ import {
     SkyListViewGridResourcesModule
   ],
   exports: [
-    SkyListViewGridComponent
+    SkyListViewGridComponent,
+    SkyColumnSelectorModule,
+    SkyListColumnSelectorActionModule
   ]
 })
-export class SkyListViewGridModule {
-}
+export class SkyListViewGridModule { }

@@ -61,6 +61,8 @@ import {
   GridStateDispatcher,
   GridStateModel
 } from './state';
+import { SkyLibResourcesService } from '@skyux/i18n';
+import { SkyLibResourcesTestService } from '@skyux/i18n/testing';
 
 describe('List View Grid Component', () => {
   describe('Basic Fixture', () => {
@@ -82,7 +84,8 @@ describe('List View Grid Component', () => {
         ],
         providers: [
           { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher }
+          { provide: ListStateDispatcher, useValue: dispatcher },
+          { provide: SkyLibResourcesService, useValue: SkyLibResourcesTestService }
         ]
       });
 
