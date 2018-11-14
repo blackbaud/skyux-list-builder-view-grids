@@ -20,11 +20,7 @@ import {
 
 import {
   SkyListColumnSelectorActionModule
-} from '../list-column-selector-action';
-
-import {
-  SkyColumnSelectorModule
-} from '../column-selector';
+} from '../list-column-selector-action/list-column-selector-action.module';
 
 import {
   SkyListViewGridComponent
@@ -42,7 +38,6 @@ import {
   ],
   exports: [
     SkyListViewGridComponent,
-    SkyColumnSelectorModule,
     SkyListColumnSelectorActionModule
   ]
 })

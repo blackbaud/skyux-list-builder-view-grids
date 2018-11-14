@@ -48,9 +48,6 @@ import {
   ListViewGridEmptyTestComponent
 } from './fixtures/list-view-grid-empty.component.fixture';
 import {
-  SkyListViewGridModule
-} from './';
-import {
   ListViewGridColumnsLoadAction
 } from './state/columns/actions';
 import {
@@ -61,8 +58,6 @@ import {
   GridStateDispatcher,
   GridStateModel
 } from './state';
-import { SkyLibResourcesService } from '@skyux/i18n';
-import { SkyLibResourcesTestService } from '@skyux/i18n/testing';
 
 describe('List View Grid Component', () => {
   describe('Basic Fixture', () => {
@@ -79,13 +74,11 @@ describe('List View Grid Component', () => {
 
       TestBed.configureTestingModule({
         imports: [
-          ListViewGridFixturesModule,
-          SkyListViewGridModule
+          ListViewGridFixturesModule
         ],
         providers: [
           { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher },
-          { provide: SkyLibResourcesService, useValue: SkyLibResourcesTestService }
+          { provide: ListStateDispatcher, useValue: dispatcher }
         ]
       });
 
@@ -377,8 +370,7 @@ describe('List View Grid Component', () => {
 
       TestBed.configureTestingModule({
         imports: [
-          ListViewGridFixturesModule,
-          SkyListViewGridModule
+          ListViewGridFixturesModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -443,8 +435,7 @@ describe('List View Grid Component', () => {
 
       TestBed.configureTestingModule({
         imports: [
-          ListViewGridFixturesModule,
-          SkyListViewGridModule
+          ListViewGridFixturesModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -474,8 +465,7 @@ describe('List View Grid Component', () => {
 
       TestBed.configureTestingModule({
         imports: [
-          ListViewGridFixturesModule,
-          SkyListViewGridModule
+          ListViewGridFixturesModule
         ]
       })
       .overrideComponent(SkyListComponent, {
