@@ -21,7 +21,6 @@ import {
   ListStateDispatcher,
   ListViewsLoadAction,
   ListViewModel,
-  ListItemModel,
   ListItemsLoadAction
 } from '@skyux/list-builder/modules/list/state';
 import {
@@ -30,6 +29,10 @@ import {
 import {
   SkyListComponent
 } from '@skyux/list-builder/modules/list/list.component';
+
+import {
+  ListItemModel
+} from '@skyux/list-builder-common/state/items/item.model';
 
 const moment = require('moment');
 

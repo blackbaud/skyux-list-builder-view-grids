@@ -35,12 +35,18 @@ import {
 } from '@skyux/grids';
 
 import {
-  ListItemModel,
-  ListSortFieldSelectorModel,
   ListSearchModel,
   ListStateDispatcher,
   ListState
 } from '@skyux/list-builder/modules/list/state';
+
+import {
+  ListItemModel
+} from '@skyux/list-builder-common/state/items/item.model';
+
+import {
+  ListSortFieldSelectorModel
+} from '@skyux/list-builder-common/state/sort/field-selector.model';
 
 import {
   getData,
