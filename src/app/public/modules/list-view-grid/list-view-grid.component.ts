@@ -45,7 +45,7 @@ import {
 import {
   getData,
   isObservable
-} from '@skyux/list-builder/modules/list/helpers';
+} from '@skyux/list-builder-common/helpers';
 
 import {
   ListViewComponent
