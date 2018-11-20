@@ -3,7 +3,7 @@ import { SkyListViewGridComponent } from '../list-view-grid.component';
 
 import {
   ListItemModel
-} from '@skyux/list-builder-common/state/items/item.model';
+} from '@skyux/list-builder-common';
 
 @Component({
   selector: 'sky-test-cmp',

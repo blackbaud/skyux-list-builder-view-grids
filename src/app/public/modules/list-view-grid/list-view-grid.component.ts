@@ -41,17 +41,11 @@ import {
 } from '@skyux/list-builder/modules/list/state';
 
 import {
-  ListItemModel
-} from '@skyux/list-builder-common/state/items/item.model';
-
-import {
-  ListSortFieldSelectorModel
-} from '@skyux/list-builder-common/state/sort/field-selector.model';
-
-import {
   getData,
-  isObservable
-} from '@skyux/list-builder-common/helpers';
+  isObservable,
+  ListItemModel,
+  ListSortFieldSelectorModel
+} from '@skyux/list-builder-common';
 
 import {
   ListViewComponent
