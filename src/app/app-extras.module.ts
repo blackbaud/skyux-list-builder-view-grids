@@ -18,7 +18,7 @@ import {
 
 import {
   SkyListViewGridModule
-} from './public/modules/list-view-grid/list-view-grid.module';
+} from './public';
 
 @NgModule({
   imports: [

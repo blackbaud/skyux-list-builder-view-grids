@@ -12,6 +12,7 @@ import {
 import {
   SkyListSecondaryActionsComponent
 } from '@skyux/list-builder';
+
 import {
   ListState,
   ListStateDispatcher,
@@ -29,24 +30,24 @@ import {
 
 import {
   SkyListViewGridComponent
-} from '../list-view-grid';
+} from '../list-view-grid/list-view-grid.component';
+
 import {
   GridStateModel
-} from '../list-view-grid/state';
+} from '../list-view-grid/state/grid-state.model';
+
 import {
   ListViewDisplayedGridColumnsLoadAction
 } from '../list-view-grid/state/displayed-columns/actions';
-import {
-  SkyColumnSelectorContext,
-  SkyColumnSelectorModel,
-  SkyColumnSelectorComponent
-} from '../column-selector';
 
 import {
-  Observable
-} from 'rxjs/Observable';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/take';
+  SkyColumnSelectorContext,
+  SkyColumnSelectorModel
+} from '../column-selector/column-selector-context';
+
+import {
+  SkyColumnSelectorComponent
+} from '../column-selector/column-selector-modal.component';
 
 @Component({
   selector: 'sky-list-column-selector-action',
