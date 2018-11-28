@@ -10,6 +10,14 @@ import {
 } from '@angular/core';
 
 import {
+  Observable
+} from 'rxjs/Observable';
+
+import 'rxjs/add/operator/distinctUntilChanged';
+
+import 'rxjs/add/operator/take';
+
+import {
   SkyListSecondaryActionsComponent
 } from '@skyux/list-builder';
 
