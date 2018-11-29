@@ -3,10 +3,6 @@ import {
 } from '@angular/core';
 
 import {
-  SkyGridModule
-} from '@skyux/grids';
-
-import {
   SkyListModule,
   SkyListToolbarModule
 } from '@skyux/list-builder';
