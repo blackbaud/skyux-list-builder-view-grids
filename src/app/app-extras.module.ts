@@ -22,12 +22,10 @@ import {
 
 @NgModule({
   imports: [
-    SkyGridModule,
     SkyListModule,
     SkyListViewGridModule
   ],
   exports: [
-    SkyGridModule,
     SkyListModule,
     SkyListViewGridModule,
     SkyListToolbarModule

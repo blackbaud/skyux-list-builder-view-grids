@@ -38,7 +38,8 @@ import {
   ],
   exports: [
     SkyListViewGridComponent,
-    SkyListColumnSelectorActionModule
+    SkyListColumnSelectorActionModule,
+    SkyGridModule
   ]
 })
 export class SkyListViewGridModule { }
