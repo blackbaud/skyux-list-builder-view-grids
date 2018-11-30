@@ -1,6 +1,6 @@
 # 3.0.0-rc.4 (2018-11-30)
 
-- Fixed `SkyListBuilderViewGridsModule` exports to include required submodules and `SkyGridModule`. [#9](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/9)
+- Fixed `SkyListBuilderViewGridsModule` exports to include required submodules and `SkyGridModule`. [blackbaud/skyux-list-builder-view-grids#9](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/9)
 
 # 3.0.0-rc.3 (2018-11-20)
 
