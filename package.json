@@ -37,11 +37,6 @@
   "devDependencies": {
     "@blackbaud/skyux": "2.37.0",
     "@blackbaud/skyux-builder": "1.30.0",
-<<<<<<< HEAD
-    "@skyux-sdk/builder-plugin-skyux": "1.0.0-rc.5",
-    "@skyux/list-builder-common": "^3.0.0-rc.1"
-=======
     "@skyux-sdk/builder-plugin-skyux": "1.0.0-rc.5"
->>>>>>> upgrade-test-fixes
   }
 }
