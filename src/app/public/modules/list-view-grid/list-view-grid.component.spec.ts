@@ -14,7 +14,7 @@ import {
 } from '@angular/platform-browser';
 
 import {
-  expect
+  expect, SkyAppTestUtility
 } from '@skyux-sdk/testing';
 import {
   ListState,
@@ -179,7 +179,7 @@ describe('List View Grid Component', () => {
         setupTest();
         tick(110); // wait for async heading
         let headerEl = nativeElement.querySelectorAll('th').item(0) as HTMLElement;
-        headerEl.click();
+        SkyAppTestUtility.fireDomEvent(headerEl, 'mouseup');
         fixture.detectChanges();
 
         tick();
