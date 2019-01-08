@@ -24,6 +24,6 @@ export class ListViewGridTestComponent {
   ]);
 
   public onToggleRowHighlightClick() {
-    this.rowHighlightedId = '2';
+    this.rowHighlightedId = this.rowHighlightedId ? undefined : '2';
   }
 }
