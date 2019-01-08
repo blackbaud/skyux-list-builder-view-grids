@@ -9,6 +9,7 @@
 
     <sky-list-view-grid
       fit="scroll"
+      [rowHighlightedId]="rowHighlightedId"
       #grid
     >
       <sky-grid-column
@@ -29,4 +30,12 @@
       </sky-grid-column>
     </sky-list-view-grid>
   </sky-list>
+
+  <p>
+    <button
+      id="highlight-row-button"
+      (click)="onToggleRowHighlightClick()">
+      Toggle row highlight
+    </button>
+  </p>
 </div>
