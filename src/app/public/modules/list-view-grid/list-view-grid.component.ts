@@ -31,7 +31,8 @@ import {
   SkyGridColumnComponent,
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
-  SkyGridColumnModel
+  SkyGridColumnModel,
+  SkyGridSelectedRowsModelChange
 } from '@skyux/grids';
 
 import {
@@ -101,6 +102,9 @@ export class SkyListViewGridComponent
 
   @Input()
   public rowHighlightedId: string;
+
+  @Input()
+  public enableMultiselect: boolean = false;
 
   @Output()
   public selectedColumnIdsChange = new EventEmitter<Array<string>>();
@@ -220,6 +224,15 @@ export class SkyListViewGridComponent
     this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels, true));
 
     this.handleColumnChange();
+
+    if (this.enableMultiselect) {
+      this.dispatcher.toolbarShowMultiselectActionBar(true);
+    }
+  }
+
+  public multiselectSelectionChange(selectedRowsChange: SkyGridSelectedRowsModelChange) {
+    // Propigate user selections to list-builder.
+    this.dispatcher.setSelected(selectedRowsChange.selectedRowIds);
   }
 
   public ngOnDestroy() {

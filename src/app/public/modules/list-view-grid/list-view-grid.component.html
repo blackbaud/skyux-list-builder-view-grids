@@ -1,6 +1,7 @@
 <div *ngIf="active | async">
   <sky-grid
     #skyGrid
+    [enableMultiselect]="enableMultiselect"
     [height]="height | async"
     [width]="width | async"
     [fit]="fit"
@@ -13,6 +14,7 @@
     (selectedColumnIdsChange)="columnIdsChanged($event)"
     [sortField]="sortField | async"
     (sortFieldChange)="sortFieldChanged($event)"
+    (multiselectSelectionChange)="multiselectSelectionChange($event)"
     >
   </sky-grid>
   <sky-wait [isWaiting]="loading | async"></sky-wait>
