@@ -157,7 +157,7 @@ export class SkyListViewGridComponent
     }
 
     // Setup Observables for template
-    this.columns = this.gridState.map(s => s.columns.items).distinctUntilChanged();
+    this.columns = this.gridState.map(s => s.columns.items).distinctUntilChanged(this.arraysEqual);
 
     this.selectedColumnIds = this.getSelectedIds();
 
@@ -180,7 +180,7 @@ export class SkyListViewGridComponent
 
     this.gridState.map(s => s.columns.items)
       .takeUntil(this.ngUnsubscribe)
-      .distinctUntilChanged()
+      .distinctUntilChanged(this.arraysEqual)
       .subscribe(columns => {
         if (this.hiddenColumns) {
           getValue(this.hiddenColumns, (hiddenColumns: string[]) => {
@@ -214,8 +214,8 @@ export class SkyListViewGridComponent
         }
       });
 
-      this.currentSearchText = this.state.map(s => s.search.searchText)
-        .distinctUntilChanged();
+    this.currentSearchText = this.state.map(s => s.search.searchText)
+      .distinctUntilChanged();
 
     this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels, true));
 
@@ -231,12 +231,18 @@ export class SkyListViewGridComponent
     this.gridState.map(s => s.columns.items)
       .take(1)
       .subscribe(columns => {
-        let displayedColumns = selectedColumnIds.map(
-          columnId => columns.filter(c => c.id === columnId)[0]
-        );
-        this.gridDispatcher.next(
-          new ListViewDisplayedGridColumnsLoadAction(displayedColumns, true)
-        );
+        this.selectedColumnIds
+          .take(1)
+          .subscribe(currentIds => {
+            if (!(this.arraysEqual(selectedColumnIds, currentIds))) {
+              let displayedColumns = selectedColumnIds.map(
+                columnId => columns.filter(c => c.id === columnId)[0]
+              );
+              this.gridDispatcher.next(
+                new ListViewDisplayedGridColumnsLoadAction(displayedColumns, true)
+              );
+            }
+          });
       });
   }
 
@@ -245,9 +251,22 @@ export class SkyListViewGridComponent
   }
 
   public onViewActive() {
-    this.gridState.map(s => s.displayedColumns.items)
+    /*
+      Ran into problem where state updates were consumed out of order. For example, on search text
+      update, the searchText update was consumed after the resulting list item update. Scanning the
+      previous value of items lastUpdate ensures that we only receive the latest items.
+    */
+    this.gridState
       .takeUntil(this.ngUnsubscribe)
-      .distinctUntilChanged()
+      .scan((previousValue: GridStateModel, newValue: GridStateModel) => {
+        if (previousValue.displayedColumns.lastUpdate > newValue.displayedColumns.lastUpdate) {
+          return previousValue;
+        } else {
+          return newValue;
+        }
+      })
+      .map(s => s.displayedColumns.items)
+      .distinctUntilChanged(this.arraysEqual)
       .subscribe(displayedColumns => {
         let setFunctions =
           this.searchFunction !== undefined ? [this.searchFunction] :
@@ -295,9 +314,9 @@ export class SkyListViewGridComponent
 
   private getGridItems(): Observable<Array<ListItemModel>> {
     /*
-      Ran into problem where state updates were consumed out of order. For example, on search text
-      update, the searchText update was consumed after the resulting list item update. Scanning the
-      previous value of items lastUpdate ensures that we only receive the latest items.
+      Same problem as above. We should move from having a state object observable with a bunch of
+      static properties to a static state object with observable properties that you can subscribe
+      to.
     */
     return this.state.map((s) => {
       return s.items;
@@ -355,5 +374,11 @@ export class SkyListViewGridComponent
       }
     }
     return true;
+  }
+
+  private arraysEqual(oldColumns: any[], newColumns: any[]) {
+    return oldColumns.length === newColumns.length &&
+    oldColumns.every((value, index) =>
+      value === newColumns[index]);
   }
 }
