@@ -105,7 +105,19 @@ describe('List View Grid Component', () => {
       component = fixture.componentInstance;
     }));
 
-    function setupTest() {
+    function getSelectInputs() {
+      return element.queryAll(By.css('.sky-grid-multiselect-cell input'));
+    }
+
+    function clickSelectInputByIndex(id: number) {
+      const selectInputs = getSelectInputs();
+      selectInputs[id].nativeElement.click();
+      fixture.detectChanges();
+    }
+
+    function setupTest(enableMultiselect: boolean = false) {
+      component.enableMultiselect = enableMultiselect;
+
       fixture.detectChanges();
 
       let items = [
@@ -340,6 +352,45 @@ describe('List View Grid Component', () => {
           })
         );
       });
+    });
+
+    describe('multiselect', () => {
+      it('should send action to the dispatcher when multiselect is enabled', fakeAsync(() => {
+        const spy = spyOn(dispatcher, 'toolbarShowMultiselectActionBar');
+
+        setupTest(true); // enable multiselect
+        flush();
+        tick(110); // wait for async heading
+        fixture.detectChanges();
+
+        expect(spy).toHaveBeenCalledWith(true);
+      }));
+
+      it('should send actions to the dispatcher on multiselectSelectionChange', fakeAsync(() => {
+        const spy = spyOn(dispatcher, 'setSelected');
+
+        setupTest(true); // enable multiselect
+        flush();
+        tick(110); // wait for async heading
+        fixture.detectChanges();
+
+        // Select first two rows.
+        clickSelectInputByIndex(0);
+        clickSelectInputByIndex(1);
+        fixture.detectChanges();
+
+        // Expect dispatcher to send action to select two rows.
+        expect(spy).toHaveBeenCalledWith(['1', '2']);
+
+        // Deselect rows.
+        spy.calls.reset();
+        clickSelectInputByIndex(0);
+        clickSelectInputByIndex(1);
+        fixture.detectChanges();
+
+        // Expect dispatcher to send an empty list.
+        expect(spy).toHaveBeenCalledWith([]);
+      }));
     });
 
     describe('nonstandard setup', () => {
