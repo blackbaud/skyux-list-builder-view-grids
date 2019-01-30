@@ -106,6 +106,9 @@ export class SkyListViewGridComponent
   @Input()
   public enableMultiselect: boolean = false;
 
+  @Input()
+  public multiselectRowId: string;
+
   @Output()
   public selectedColumnIdsChange = new EventEmitter<Array<string>>();
 
