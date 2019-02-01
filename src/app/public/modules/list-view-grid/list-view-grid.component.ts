@@ -174,7 +174,7 @@ export class SkyListViewGridComponent
       .takeUntil(this.ngUnsubscribe);
 
     this.sortField = this.state
-    .map((s) => {
+      .map((s) => {
         /* istanbul ignore else */
         /* sanity check */
         if (s.sort && s.sort.fieldSelectors) {
@@ -239,21 +239,21 @@ export class SkyListViewGridComponent
   }
 
   public columnIdsChanged(selectedColumnIds: Array<string>) {
-    this.gridState.map(s => s.columns.items)
+    this.selectedColumnIds
       .take(1)
-      .subscribe(columns => {
-        this.selectedColumnIds
-          .take(1)
-          .subscribe(currentIds => {
-            if (!(this.arraysEqual(selectedColumnIds, currentIds))) {
+      .subscribe(currentIds => {
+        if (!(this.arraysEqual(selectedColumnIds, currentIds))) {
+          this.gridState.map(s => s.columns.items)
+            .take(1)
+            .subscribe(columns => {
               let displayedColumns = selectedColumnIds.map(
                 columnId => columns.filter(c => c.id === columnId)[0]
               );
               this.gridDispatcher.next(
                 new ListViewDisplayedGridColumnsLoadAction(displayedColumns, true)
               );
-            }
-          });
+            });
+        }
       });
   }
 
@@ -389,7 +389,7 @@ export class SkyListViewGridComponent
 
   private arraysEqual(arrayA: any[], arrayB: any[]) {
     return arrayA.length === arrayB.length &&
-    arrayA.every((value, index) =>
-      value === arrayB[index]);
+      arrayA.every((value, index) =>
+        value === arrayB[index]);
   }
 }
