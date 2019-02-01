@@ -157,26 +157,35 @@ export class SkyListViewGridComponent
     }
 
     // Setup Observables for template
-    this.columns = this.gridState.map(s => s.columns.items).distinctUntilChanged(this.arraysEqual);
+    this.columns = this.gridState
+      .map(s => s.columns.items)
+      .distinctUntilChanged(this.arraysEqual)
+      .takeUntil(this.ngUnsubscribe);
 
     this.selectedColumnIds = this.getSelectedIds();
 
     this.items = this.getGridItems();
 
-    this.loading = this.state.map((s) => {
-      return s.items.loading;
-    }).distinctUntilChanged();
+    this.loading = this.state
+      .map((s) => {
+        return s.items.loading;
+      })
+      .distinctUntilChanged()
+      .takeUntil(this.ngUnsubscribe);
 
-    this.sortField = this.state.map((s) => {
-      /* istanbul ignore else */
-      /* sanity check */
-      if (s.sort && s.sort.fieldSelectors) {
-        return s.sort.fieldSelectors[0];
-      }
-      /* istanbul ignore next */
-      /* sanity check */
-      return undefined;
-    }).distinctUntilChanged();
+    this.sortField = this.state
+    .map((s) => {
+        /* istanbul ignore else */
+        /* sanity check */
+        if (s.sort && s.sort.fieldSelectors) {
+          return s.sort.fieldSelectors[0];
+        }
+        /* istanbul ignore next */
+        /* sanity check */
+        return undefined;
+      })
+      .distinctUntilChanged()
+      .takeUntil(this.ngUnsubscribe);
 
     this.gridState.map(s => s.columns.items)
       .takeUntil(this.ngUnsubscribe)
@@ -214,8 +223,10 @@ export class SkyListViewGridComponent
         }
       });
 
-    this.currentSearchText = this.state.map(s => s.search.searchText)
-      .distinctUntilChanged();
+    this.currentSearchText = this.state
+      .map(s => s.search.searchText)
+      .distinctUntilChanged()
+      .takeUntil(this.ngUnsubscribe);
 
     this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels, true));
 
@@ -376,9 +387,9 @@ export class SkyListViewGridComponent
     return true;
   }
 
-  private arraysEqual(oldColumns: any[], newColumns: any[]) {
-    return oldColumns.length === newColumns.length &&
-    oldColumns.every((value, index) =>
-      value === newColumns[index]);
+  private arraysEqual(arrayA: any[], arrayB: any[]) {
+    return arrayA.length === arrayB.length &&
+    arrayA.every((value, index) =>
+      value === arrayB[index]);
   }
 }
