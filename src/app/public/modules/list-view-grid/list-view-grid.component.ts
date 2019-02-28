@@ -229,7 +229,7 @@ export class SkyListViewGridComponent
     this.handleColumnChange();
 
     if (this.enableMultiselect) {
-      this.dispatcher.toolbarShowMultiselectActionBar(true);
+      this.dispatcher.toolbarShowMultiselectToolbar(true);
     }
   }
 
