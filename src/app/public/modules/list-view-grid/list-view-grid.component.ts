@@ -312,7 +312,7 @@ export class SkyListViewGridComponent
         }
       })
       .map((result: AsyncList<ListItemModel>) => {
-        this.changeDetector.detectChanges();
+        this.changeDetector.markForCheck();
         return result.items;
       })
       .distinctUntilChanged();
