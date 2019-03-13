@@ -32,14 +32,15 @@ import {
   SkyGridColumnComponent,
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
-  SkyGridColumnModel,
-  SkyGridSelectedRowsModelChange
+  SkyGridColumnModel
 } from '@skyux/grids';
 
 import {
   ListSearchModel,
   ListStateDispatcher,
-  ListState
+  ListState,
+  ListSelectedModel,
+  ListSelectedSetItemsSelectedAction
 } from '@skyux/list-builder/modules/list/state';
 
 import {
@@ -128,6 +129,8 @@ export class SkyListViewGridComponent
 
   public currentSearchText: Observable<string>;
 
+  private _multiselectSelectedIds: string[] = [];
+
   /* tslint:disable */
   @Input('search')
   private searchFunction: (data: any, searchText: string) => boolean;
@@ -149,6 +152,21 @@ export class SkyListViewGridComponent
   }
 
   public ngAfterContentInit() {
+
+    // Watch for selection changes and update _multiselectSelectedIds for local comparison.
+    this.state.map(s => s.selected.item)
+      .takeUntil(this.ngUnsubscribe)
+      .distinctUntilChanged(this.selectedMapEqual)
+      .subscribe((items: ListSelectedModel) => {
+        let selectedIds: string[] = [];
+        items.selectedIdMap.forEach((isSelected, id) => {
+          if (items.selectedIdMap.get(id) === true) {
+            selectedIds.push(id);
+          }
+        });
+        this._multiselectSelectedIds = selectedIds;
+      });
+
     if (this.columnComponents.length === 0) {
       throw new Error('Grid view requires at least one sky-grid-column to render.');
     }
@@ -235,14 +253,32 @@ export class SkyListViewGridComponent
     }
   }
 
-  public multiselectSelectionChange(selectedRowsChange: SkyGridSelectedRowsModelChange) {
-    // Propigate user selections to list-builder.
-    this.dispatcher.setSelected(selectedRowsChange.selectedRowIds);
-  }
-
   public ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  public multiselectSelectionChange(event: any): void {
+    this.state.map(s => s.items.items)
+      .take(1)
+      .subscribe((items: ListItemModel[]) => {
+        const newItemIds = this.arrayIntersection(items.map(i => i.id), this._multiselectSelectedIds);
+        const newIds = items.filter(i => i.isSelected).map(i => i.id);
+
+        // Check for deselected ids & send message to dispatcher.
+        const deselectedIds = this.arrayDiff(newItemIds, newIds);
+        if (deselectedIds.length > 0) {
+          // this.dispatcher.setSelected(deselectedIds, false);
+          this.dispatcher.next(new ListSelectedSetItemsSelectedAction(deselectedIds, false, false));
+        }
+
+        // Check for selected ids & send message to dispatcher.
+        const selectedIds = this.arrayDiff(newIds, newItemIds);
+        if (selectedIds.length > 0) {
+          // this.dispatcher.setSelected(selectedIds, true);
+          this.dispatcher.next(new ListSelectedSetItemsSelectedAction(selectedIds, true, false));
+        }
+      });
   }
 
   public columnIdsChanged(selectedColumnIds: Array<string>) {
@@ -374,5 +410,29 @@ export class SkyListViewGridComponent
       }
     }
     return true;
+  }
+
+  private selectedMapEqual(prev: ListSelectedModel, next: ListSelectedModel): boolean {
+    if (prev.selectedIdMap.size !== next.selectedIdMap.size) {
+      return false;
+    }
+
+    for (let i = 0; i < next.selectedIdMap.size; i++) {
+      const key = Array.from(next.selectedIdMap.keys())[i];
+      const value = next.selectedIdMap.get(key);
+      if (value !== prev.selectedIdMap.get(key)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private arrayDiff(arrA: Array<any>, arrB: Array<any>): Array<any> {
+    return arrA.filter(i => arrB.indexOf(i) < 0);
+  }
+
+  private arrayIntersection(arrA: Array<any>, arrB: Array<any>): Array<any> {
+    return arrA.filter(value => -1 !== arrB.indexOf(value));
   }
 }
