@@ -277,15 +277,13 @@ export class SkyListViewGridComponent
         // Check for deselected ids & send message to dispatcher.
         const deselectedIds = this.arrayDiff(newItemIds, newIds);
         if (deselectedIds.length > 0) {
-          // this.dispatcher.setSelected(deselectedIds, false);
-          this.dispatcher.next(new ListSelectedSetItemsSelectedAction(deselectedIds, false, false));
+          this.dispatcher.setSelected(deselectedIds, false);
         }
 
         // Check for selected ids & send message to dispatcher.
         const selectedIds = this.arrayDiff(newIds, newItemIds);
         if (selectedIds.length > 0) {
-          // this.dispatcher.setSelected(selectedIds, true);
-          this.dispatcher.next(new ListSelectedSetItemsSelectedAction(selectedIds, true, false));
+          this.dispatcher.setSelected(selectedIds, true);
         }
       });
   }

@@ -421,7 +421,7 @@ describe('List View Grid Component', () => {
 
     describe('multiselect', () => {
       it('should send action to the dispatcher when multiselect is enabled', fakeAsync(() => {
-        const spy = spyOn(dispatcher, 'toolbarShowMultiselectActionBar');
+        const spy = spyOn(dispatcher, 'toolbarShowMultiselectToolbar');
 
         setupTest(true); // enable multiselect
         flush();
@@ -432,29 +432,28 @@ describe('List View Grid Component', () => {
       }));
 
       it('should send actions to the dispatcher on multiselectSelectionChange', fakeAsync(() => {
-        const spy = spyOn(dispatcher, 'setSelected');
+        const spy = spyOn(dispatcher, 'setSelected').and.callThrough();
 
         setupTest(true); // enable multiselect
         flush();
         tick(110); // wait for async heading
         fixture.detectChanges();
 
-        // Select first two rows.
+        // Select first row.
         clickSelectInputByIndex(0);
-        clickSelectInputByIndex(1);
         fixture.detectChanges();
 
-        // Expect dispatcher to send action to select two rows.
-        expect(spy).toHaveBeenCalledWith(['1', '2']);
+        // Expect dispatcher to send action.
+        expect(spy).toHaveBeenCalledWith(['1'], true);
 
-        // Deselect rows.
+        // Deselect first row.
         spy.calls.reset();
+        flush();
         clickSelectInputByIndex(0);
-        clickSelectInputByIndex(1);
         fixture.detectChanges();
 
-        // Expect dispatcher to send an empty list.
-        expect(spy).toHaveBeenCalledWith([]);
+        // Expect dispatcher to send action.
+        expect(spy).toHaveBeenCalledWith(['1'], false);
       }));
     });
 
