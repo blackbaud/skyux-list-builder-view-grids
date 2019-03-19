@@ -1,6 +1,6 @@
 {
   "name": "@skyux/list-builder-view-grids",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "SKY UX list-builder-view-grids",
   "main": "bundles/bundle.umd.js",
   "module": "index.ts",
