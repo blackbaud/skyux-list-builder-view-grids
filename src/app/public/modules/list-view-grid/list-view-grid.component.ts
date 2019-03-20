@@ -39,8 +39,7 @@ import {
   ListSearchModel,
   ListStateDispatcher,
   ListState,
-  ListSelectedModel,
-  ListSelectedSetItemsSelectedAction
+  ListSelectedModel
 } from '@skyux/list-builder/modules/list/state';
 
 import {
