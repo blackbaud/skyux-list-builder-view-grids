@@ -157,11 +157,13 @@ export class SkyListViewGridComponent
       .distinctUntilChanged(this.selectedMapEqual)
       .subscribe((items: ListSelectedModel) => {
         let selectedIds: string[] = [];
+
         items.selectedIdMap.forEach((isSelected, id) => {
           if (items.selectedIdMap.get(id) === true) {
             selectedIds.push(id);
           }
         });
+
         this._multiselectSelectedIds = selectedIds;
       });
 
