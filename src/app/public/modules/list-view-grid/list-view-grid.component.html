@@ -12,7 +12,7 @@
     [selectedColumnIds]="selectedColumnIds | async"
     [sortField]="sortField | async"
     [width]="width | async"
-    (multiselectSelectionChange)="multiselectSelectionChange($event)"
+    (multiselectSelectionChange)="onMultiselectSelectionChange($event)"
     (selectedColumnIdsChange)="columnIdsChanged($event)"
     (sortFieldChange)="sortFieldChanged($event)"
     #skyGrid

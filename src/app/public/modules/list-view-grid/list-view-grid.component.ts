@@ -32,7 +32,8 @@ import {
   SkyGridColumnComponent,
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
-  SkyGridColumnModel
+  SkyGridColumnModel,
+  SkyGridSelectedRowsModelChange
 } from '@skyux/grids';
 
 import {
@@ -128,7 +129,7 @@ export class SkyListViewGridComponent
 
   public currentSearchText: Observable<string>;
 
-  private _multiselectSelectedIds: string[] = [];
+  private multiselectSelectedIds: string[] = [];
 
   /* tslint:disable */
   @Input('search')
@@ -151,7 +152,7 @@ export class SkyListViewGridComponent
 
   public ngAfterContentInit() {
 
-    // Watch for selection changes and update _multiselectSelectedIds for local comparison.
+    // Watch for selection changes and update multiselectSelectedIds for local comparison.
     this.state.map(s => s.selected.item)
       .takeUntil(this.ngUnsubscribe)
       .distinctUntilChanged(this.selectedMapEqual)
@@ -164,7 +165,7 @@ export class SkyListViewGridComponent
           }
         });
 
-        this._multiselectSelectedIds = selectedIds;
+        this.multiselectSelectedIds = selectedIds;
       });
 
     if (this.columnComponents.length === 0) {
@@ -269,11 +270,11 @@ export class SkyListViewGridComponent
     this.ngUnsubscribe.complete();
   }
 
-  public multiselectSelectionChange(event: any): void {
+  public onMultiselectSelectionChange(event: SkyGridSelectedRowsModelChange): void {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe((items: ListItemModel[]) => {
-        const newItemIds = this.arrayIntersection(items.map(i => i.id), this._multiselectSelectedIds);
+        const newItemIds = this.arrayIntersection(items.map(i => i.id), this.multiselectSelectedIds);
         const newIds = items.filter(i => i.isSelected).map(i => i.id);
 
         // Check for deselected ids & send message to dispatcher.
@@ -444,8 +445,14 @@ export class SkyListViewGridComponent
       return false;
     }
 
-    for (let i = 0; i < next.selectedIdMap.size; i++) {
-      const key = Array.from(next.selectedIdMap.keys())[i];
+    let keys: string[] = [];
+    next.selectedIdMap.forEach((value, key) => {
+      keys.push(key);
+    });
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+
       const value = next.selectedIdMap.get(key);
       if (value !== prev.selectedIdMap.get(key)) {
         return false;
