@@ -1,6 +1,6 @@
 # 3.2.0 (2019-03-22)
 
-- Added multiselect toolbar. [#21](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/21)
+- Added support for `@skyux/list-builder@^3.2.1` to add multiselect toolbar to list view grid component. [#21](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/21)
 
 # 3.1.0 (2019-03-19)
 
