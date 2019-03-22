@@ -157,7 +157,7 @@ export class SkyListViewGridComponent
       .takeUntil(this.ngUnsubscribe)
       .distinctUntilChanged(this.selectedMapEqual)
       .subscribe((items: ListSelectedModel) => {
-        let selectedIds: string[] = [];
+        const selectedIds: string[] = [];
 
         items.selectedIdMap.forEach((isSelected, id) => {
           if (items.selectedIdMap.get(id) === true) {
