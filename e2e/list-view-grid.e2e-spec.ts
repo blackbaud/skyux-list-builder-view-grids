@@ -9,9 +9,13 @@ import {
 } from '@skyux-sdk/e2e';
 
 describe('List view grid', () => {
-  it('should match the previous screenshot', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
+
+  beforeEach(() => {
+    SkyHostBrowser.get('visual/list-view-grid');
     SkyHostBrowser.setWindowBreakpoint('lg');
+  });
+
+  it('should match the previous screenshot', (done) => {
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
       screenshotName: 'list-view-grid-lg'
@@ -19,7 +23,6 @@ describe('List view grid', () => {
   });
 
   it('should match the previous screenshot (screen: xs)', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
     SkyHostBrowser.setWindowBreakpoint('xs');
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
@@ -28,8 +31,6 @@ describe('List view grid', () => {
   });
 
   it('should match the previous screenshot with column chooser open', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
-    SkyHostBrowser.setWindowBreakpoint('lg');
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
 
     element(by.css('[sky-cmp-id="column-chooser"] button')).click();
@@ -40,7 +41,6 @@ describe('List view grid', () => {
   });
 
   it('should match the previous screenshot with column chooser open (screen: xs)', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
     SkyHostBrowser.setWindowBreakpoint('xs');
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
 
@@ -52,8 +52,6 @@ describe('List view grid', () => {
   });
 
   it('should match the previous screenshot with a highlighted row', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
-    SkyHostBrowser.setWindowBreakpoint('lg');
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
 
     element(by.css('#highlight-row-button')).click();
@@ -64,7 +62,6 @@ describe('List view grid', () => {
   });
 
   it('should match the previous screenshot with a highlighted row (screen: xs)', (done) => {
-    SkyHostBrowser.get('/visual/list-view-grid');
     SkyHostBrowser.setWindowBreakpoint('xs');
     SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
 
@@ -72,6 +69,23 @@ describe('List view grid', () => {
 
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
       screenshotName: 'list-view-grid-highlighted-row-xs'
+    });
+  });
+
+  it('should match the previous screenshot with multiselect enabled', (done) => {
+    SkyHostBrowser.scrollTo('#screenshot-list-view-grid-with-multiselect');
+
+    expect('#screenshot-list-view-grid-with-multiselect').toMatchBaselineScreenshot(done, {
+      screenshotName: 'list-view-grid-with-multiselect'
+    });
+  });
+
+  it('should match the previous screenshot with multiselect enabled (screen: xs)', (done) => {
+    SkyHostBrowser.setWindowBreakpoint('xs');
+    SkyHostBrowser.scrollTo('#screenshot-list-view-grid-with-multiselect');
+
+    expect('#screenshot-list-view-grid-with-multiselect').toMatchBaselineScreenshot(done, {
+      screenshotName: 'list-view-grid-with-multiselect-xs'
     });
   });
 });
