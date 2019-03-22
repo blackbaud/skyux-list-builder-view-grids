@@ -1,3 +1,7 @@
+# 3.2.0 (2019-03-22)
+
+- Added multiselect toolbar. [#21](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/21)
+
 # 3.1.0 (2019-03-19)
 
 - Added support for `microedge-rxstate@>=2.0.2`. [#32](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/32)
