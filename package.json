@@ -1,6 +1,6 @@
 {
   "name": "@skyux/list-builder-view-grids",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "SKY UX list-builder-view-grids",
   "main": "bundles/bundle.umd.js",
   "module": "index.ts",
@@ -36,8 +36,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@blackbaud/skyux": "2.45.0",
-    "@blackbaud/skyux-builder": "1.33.0",
-    "@skyux-sdk/builder-plugin-skyux": "1.0.0-rc.6"
+    "@blackbaud/skyux": "2.49.2",
+    "@blackbaud/skyux-builder": "1.35.0",
+    "@skyux-sdk/builder-plugin-skyux": "1.0.0"
   }
 }

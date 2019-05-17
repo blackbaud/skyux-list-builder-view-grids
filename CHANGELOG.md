@@ -1,3 +1,7 @@
+# 3.3.0 (2019-05-17)
+
+- Added UI Config Service hooks to list view grid component. [#38](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/38)
+
 # 3.2.0 (2019-03-22)
 
 - Added support for `@skyux/list-builder@^3.2.1` to add multiselect toolbar to list view grid component. [#21](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/21)
