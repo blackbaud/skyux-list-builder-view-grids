@@ -336,7 +336,6 @@ export class SkyListViewGridComponent
           this.searchFunction !== undefined ? [this.searchFunction] :
             displayedColumns
               .map(column => (data: any, searchText: string) =>
-                /* istanbul ignore next */
                 column.searchFunction(getData(data, column.field), searchText)
               )
               .filter(c => c !== undefined);
