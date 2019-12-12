@@ -33,7 +33,8 @@ import {
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
   SkyGridColumnModel,
-  SkyGridSelectedRowsModelChange
+  SkyGridSelectedRowsModelChange,
+  SkyGridSelectedRowsSource
 } from '@skyux/grids';
 
 import {
@@ -275,7 +276,10 @@ export class SkyListViewGridComponent
    * This logic should only run on user interaction - NOT programmatic updates.
    */
   public onMultiselectSelectionChange(event: SkyGridSelectedRowsModelChange): void {
-    if (event.source === 'checkboxChange' || event.source === 'rowClick') {
+    if (
+      event.source === SkyGridSelectedRowsSource.CheckboxChange ||
+      event.source === SkyGridSelectedRowsSource.RowClick
+    ) {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe((items: ListItemModel[]) => {
