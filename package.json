@@ -25,7 +25,7 @@
   "peerDependencies": {
     "@angular/common": ">=4.3.6",
     "@angular/core": ">=4.3.6",
-    "@skyux/grids": "^3.2.0",
+    "@skyux/grids": "^3.3.0",
     "@skyux/i18n": "^3.7.0",
     "@skyux/indicators": "^3.1.0",
     "@skyux/list-builder": "^3.6.0",
@@ -59,7 +59,7 @@
     "@skyux/config": "3.7.0",
     "@skyux/core": "3.9.0",
     "@skyux/forms": "3.5.0",
-    "@skyux/grids": "3.2.1",
+    "@skyux/grids": "3.3.0",
     "@skyux/http": "3.9.0",
     "@skyux/i18n": "3.9.0",
     "@skyux/indicators": "3.1.1",
