@@ -113,10 +113,6 @@ describe('List View Grid Component', () => {
       return element.queryAll(By.css('.sky-grid-multiselect-cell input'));
     }
 
-    function getGridRows(): DebugElement[] {
-      return element.queryAll(By.css('.sky-grid-row'));
-    }
-
     function clickSelectInputByIndex(id: number) {
       const selectInputs = getSelectInputs();
       selectInputs[id].nativeElement.click();
