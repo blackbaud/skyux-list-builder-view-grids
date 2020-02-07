@@ -1,6 +1,6 @@
 # 3.6.2 (2020-02-07)
 
-- Updated the `list-builder` peer dependency to prevent redundant updates to `ListItemModel` and improve performance for the list view grid component. [#77](https://github.com/blackbaud/skyux-list-builder/pull/77)
+- Added support for `@skyux/list-builder@3.6.3` to prevent redundant updates to `ListItemModel` and improve performance for the list view grid component. [#77](https://github.com/blackbaud/skyux-list-builder/pull/77)
 
 # 3.6.1 (2019-12-30)
 
