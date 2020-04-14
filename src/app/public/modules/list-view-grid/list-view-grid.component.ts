@@ -118,6 +118,18 @@ export class SkyListViewGridComponent
   @ViewChild(SkyGridComponent)
   public gridComponent: SkyGridComponent;
 
+  public get gridHeight(): Observable<number> {
+    return (typeof this.height === 'number')
+      ? Observable.of(this.height)
+      : this.height;
+  }
+
+  public get gridWidth(): Observable<number> {
+    return (typeof this.width === 'number')
+      ? Observable.of(this.width)
+      : this.width;
+  }
+
   public columns: Observable<Array<SkyGridColumnModel>>;
 
   public selectedColumnIds: Observable<Array<string>>;
@@ -130,7 +142,7 @@ export class SkyListViewGridComponent
 
   public currentSearchText: Observable<string>;
 
-  private multiselectSelectedIds: string[] = [];
+  public multiselectSelectedIds: string[] = [];
 
   /* tslint:disable */
   @Input('search')
