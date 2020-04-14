@@ -67,6 +67,7 @@ import { ListViewDisplayedGridColumnsLoadAction } from './state/displayed-column
 @Component({
   selector: 'sky-list-view-grid',
   templateUrl: './list-view-grid.component.html',
+  styleUrls: ['./list-view-grid.component.scss'],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewGridComponent) },
