@@ -121,11 +121,13 @@ export class SkyListViewGridComponent
 
   public get gridHeight(): Observable<number> {
     return (typeof this.height === 'number')
+      /* istanbul ignore next */
       ? Observable.of(this.height)
       : this.height;
   }
 
   public get gridWidth(): Observable<number> {
+    /* istanbul ignore next */
     return (typeof this.width === 'number')
       ? Observable.of(this.width)
       : this.width;
