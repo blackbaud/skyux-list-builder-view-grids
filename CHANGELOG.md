@@ -1,3 +1,13 @@
+# 4.0.0-rc.0 (2020-04-17)
+
+### New features
+
+- Updated the pipeline to transpile to the [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview). [#65](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/65)
+
+### Breaking changes
+
+- Dropped support for `rxjs@5`. Consumers may install `rxjs-compat@^6` to support older versions of `rxjs`. [#65](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/65)
+
 # 3.6.2 (2020-02-07)
 
 - Added support for `@skyux/list-builder@3.6.3` to prevent redundant updates to `ListItemModel` and improve performance for the list view grid component. [#77](https://github.com/blackbaud/skyux-list-builder/pull/77)
