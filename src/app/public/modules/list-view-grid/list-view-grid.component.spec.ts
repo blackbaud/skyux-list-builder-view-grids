@@ -39,6 +39,11 @@ import {
 } from '@skyux/list-builder-common';
 
 import {
+  skip,
+  take
+} from 'rxjs/operators';
+
+import {
   ListViewGridFixturesModule
 } from './fixtures/list-view-grid-fixtures.module';
 
@@ -60,19 +65,26 @@ import {
 
 import {
   ListViewGridColumnsLoadAction
-} from './state/columns/actions';
+} from './state/columns/load.action';
 
 import {
   ListViewDisplayedGridColumnsLoadAction
-} from './state/displayed-columns/actions';
+} from './state/displayed-columns/load.action';
 
 import {
-  GridState,
-  GridStateDispatcher,
-  GridStateModel
-} from './state';
+  GridState
+} from './state/grid-state.state-node';
 
-const moment = require('moment');
+import {
+  GridStateDispatcher
+} from './state/grid-state.rxstate';
+
+import {
+  GridStateModel
+} from './state/grid-state.model';
+
+import * as moment_ from 'moment';
+const moment = moment_;
 
 describe('List View Grid Component', () => {
   describe('Basic Fixture', () => {
@@ -144,7 +156,7 @@ describe('List View Grid Component', () => {
 
       // always skip the first update to ListState, when state is ready
       // run detectChanges once more then begin tests
-      state.skip(1).take(1).subscribe(() => fixture.detectChanges());
+      state.pipe(skip(1), take(1)).subscribe(() => fixture.detectChanges());
       fixture.detectChanges();
     }
 
@@ -272,7 +284,7 @@ describe('List View Grid Component', () => {
 
         tick();
 
-        state.take(1).subscribe((s) => {
+        state.pipe(take(1)).subscribe((s) => {
           expect(s.sort.fieldSelectors[0].fieldSelector).toBe('column1');
           expect(s.sort.fieldSelectors[0].descending).toBe(true);
         });
@@ -314,7 +326,7 @@ describe('List View Grid Component', () => {
         flush();
         tick();
 
-        state.take(1).subscribe((current) => {
+        state.pipe(take(1)).subscribe(() => {
           dispatcher.searchSetText('searchText');
           tick();
           flush();
@@ -332,12 +344,12 @@ describe('List View Grid Component', () => {
         flush();
         tick();
 
-        state.take(1).subscribe((current) => {
+        state.pipe(take(1)).subscribe((current) => {
           let searchFound = current.search.functions[0]({column1: 'foobar'}, 'foobar');
           expect(searchFound).toBe(true);
         });
 
-        state.take(1).subscribe((current) => {
+        state.pipe(take(1)).subscribe((current) => {
           let searchFound = current.search.functions[0]({column1: 'foobar'}, 'baz');
           expect(searchFound).toBe(false);
         });
@@ -386,7 +398,7 @@ describe('List View Grid Component', () => {
         fixture.whenStable().then(() => {
           fixture.detectChanges();
 
-          state.take(1).subscribe((current) => {
+          state.pipe(take(1)).subscribe(() => {
             dispatcher.searchSetText('searchText');
 
             fixture.whenStable().then(() => {
@@ -408,7 +420,7 @@ describe('List View Grid Component', () => {
             new SkyGridColumnModel(component.viewtemplates.first)
           ];
           gridDispatcher.next(new ListViewGridColumnsLoadAction(columns));
-          gridState.take(1).subscribe(s => {
+          gridState.pipe(take(1)).subscribe(s => {
             expect(s.columns.count).toBe(2);
           });
         }));
@@ -424,7 +436,7 @@ describe('List View Grid Component', () => {
               new SkyGridColumnModel(component.viewtemplates.first)
             ];
             gridDispatcher.next(new ListViewGridColumnsLoadAction(columns));
-            gridState.take(1).subscribe(s => {
+            gridState.pipe(take(1)).subscribe(s => {
               expect(s.columns.count).toBe(2);
             });
 
@@ -432,7 +444,7 @@ describe('List View Grid Component', () => {
               new SkyGridColumnModel(component.viewtemplates.first)
             ]));
 
-            gridState.take(1).subscribe(s => {
+            gridState.pipe(take(1)).subscribe(s => {
               expect(s.displayedColumns.count).toBe(1);
             });
 
@@ -440,7 +452,7 @@ describe('List View Grid Component', () => {
               new SkyGridColumnModel(component.viewtemplates.first)
             ]));
 
-            gridState.take(1).subscribe(s => {
+            gridState.pipe(take(1)).subscribe(s => {
               expect(s.displayedColumns.count).toBe(2);
             });
           })
@@ -565,7 +577,7 @@ describe('List View Grid Component', () => {
         flush();
         tick();
 
-        state.take(1).subscribe((current) => {
+        state.pipe(take(1)).subscribe((current) => {
           current.search.functions[0]('something', 'searchText');
           expect(appliedData).toBe('something');
           expect(appliedSearch).toBe('searchText');
@@ -628,7 +640,7 @@ describe('List View Grid Component', () => {
 
       // always skip the first update to ListState, when state is ready
       // run detectChanges once more then begin tests
-      state.skip(1).take(1).subscribe(() => fixture.detectChanges());
+      state.pipe(skip(1), take(1)).subscribe(() => fixture.detectChanges());
       fixture.detectChanges();
     }));
 
@@ -703,7 +715,7 @@ describe('List View Grid Component', () => {
 
       // always skip the first update to ListState, when state is ready
       // run detectChanges once more then begin tests
-      state.skip(1).take(1).subscribe(() => fixture.detectChanges());
+      state.pipe(skip(1), take(1)).subscribe(() => fixture.detectChanges());
       fixture.detectChanges();
     }));
 

@@ -10,7 +10,7 @@ import {
 
 import {
   BehaviorSubject
-} from 'rxjs/BehaviorSubject';
+} from 'rxjs';
 
 import {
   SkyGridSelectedRowsModelChange
