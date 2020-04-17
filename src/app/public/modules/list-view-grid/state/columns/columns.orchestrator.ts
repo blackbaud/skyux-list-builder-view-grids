@@ -1,10 +1,17 @@
 import { GridStateOrchestrator } from '../grid-state.rxstate';
-import { AsyncList } from 'microedge-rxstate/dist';
+
+import {
+  AsyncList
+} from '@skyux/list-builder-common';
 
 import { SkyGridColumnModel } from '@skyux/grids';
-import { ListViewGridColumnsLoadAction } from './actions';
 
-const moment = require('moment');
+import {
+  ListViewGridColumnsLoadAction
+} from './load.action';
+
+import * as moment_ from 'moment';
+const moment = moment_;
 
 export class ListViewGridColumnsOrchestrator
   extends GridStateOrchestrator<AsyncList<SkyGridColumnModel>> {
