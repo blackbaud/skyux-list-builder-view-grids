@@ -1,4 +1,8 @@
 import {
+  TestBed
+} from '@angular/core/testing';
+
+import {
   Component
 } from '@angular/core';
 
@@ -7,12 +11,13 @@ import {
 } from '@angular/platform-browser';
 
 import {
-  TestBed
-} from '@angular/core/testing';
+  SkyListModule,
+  SkyListToolbarModule
+} from '@skyux/list-builder';
 
 import {
-  SkyListModule, SkyListToolbarModule
-} from '@skyux/list-builder';
+  SkyListViewGridModule
+} from '@skyux/list-builder-view-grids';
 
 import {
   Observable,
@@ -22,7 +27,6 @@ import {
 import {
   SkyListViewGridFixture
 } from './list-view-grid-fixture';
-import { SkyListViewGridModule } from '@skyux/list-builder-view-grids';
 
 const testItems = [
   { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples'},

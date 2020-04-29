@@ -1,10 +1,18 @@
 import {
+  ComponentFixture
+} from '@angular/core/testing';
+
+import {
   DebugElement
 } from '@angular/core';
 
 import {
   By
 } from '@angular/platform-browser';
+
+import {
+  SkyAppTestUtility
+} from '@skyux-sdk/testing';
 
 import {
   SkyListViewGridFixtureCell
@@ -17,8 +25,6 @@ import {
 import {
   SkyListViewGridFixtureRow
 } from './list-view-grid-fixture-row';
-import { ComponentFixture } from '@angular/core/testing';
-import { SkyAppTestUtility } from '@skyux-sdk/testing';
 
 /**
  * Allows interaction with a SKY UX list view grid component.
