@@ -1,3 +1,9 @@
+# 4.0.0-rc.1 (2020-04-30)
+
+### New features
+
+- Added a test fixture for the list view grid component to be used in consumer unit tests. [#68](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/68)
+
 # 4.0.0-rc.0 (2020-04-17)
 
 ### New features
