@@ -97,7 +97,7 @@ export class SkyListViewGridFixture {
     return this.debugEl.queryAll(By.css('.sky-grid-row'));
   }
 
-  private getRowEl(index: number) {
+  private getRowEl(index: number): DebugElement {
     const rowEls = this.getRowEls();
 
     const rowEl = rowEls[index];
