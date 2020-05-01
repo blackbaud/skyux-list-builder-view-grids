@@ -118,7 +118,7 @@ describe('List View Grid Component', () => {
 
       let items = [
         new ListItemModel('1', { column1: '1', column2: 'Apple',
-          column3: 1, column4: new Date().getTime() + 600000, }),
+          column3: 1, column4: new Date().getTime() + 600000 }),
         new ListItemModel('2', { column1: '01', column2: 'Banana',
           column3: 1, column4: new Date().getTime() + 3600000, column5: 'test' }),
         new ListItemModel('3', { column1: '11', column2: 'Carrot',
