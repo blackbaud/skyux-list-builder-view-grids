@@ -31,9 +31,7 @@
     "@skyux/list-builder-common": "^4.0.0-rc.1",
     "@skyux/modals": "^4.0.0-rc.4"
   },
-  "dependencies": {
-    "moment": "2.25.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@angular/animations": "9.1.4",
     "@angular/common": "9.1.4",

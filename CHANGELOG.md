@@ -21,7 +21,6 @@
 ### Breaking changes
 
 - Dropped support for `rxjs@5`. Consumers may install `rxjs-compat@^6` to support older versions of `rxjs`. [#65](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/65)
->>>>>>> rc-4.0.0
 
 # 3.6.2 (2020-02-07)
 
