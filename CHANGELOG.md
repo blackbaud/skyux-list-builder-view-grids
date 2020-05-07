@@ -1,3 +1,7 @@
+# 4.0.0-rc.2 (2020-05-07)
+
+- Added bug fixes and features from the `master` branch. [#73](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/73)
+
 # 3.6.4 (2020-05-06)
 
 - Fixed the column selector action to display in the correct position inside a list toolbar. [#67](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/67)
