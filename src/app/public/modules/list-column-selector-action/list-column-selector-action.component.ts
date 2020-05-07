@@ -75,6 +75,8 @@ export class SkyListColumnSelectorActionComponent implements AfterContentInit {
   })
   private columnChooserTemplate: TemplateRef<any>;
 
+  private columnSelectorActionItemToolbarIndex: number = 7000;
+
   constructor(
     public listState: ListState,
     private modalService: SkyModalService,
@@ -96,7 +98,7 @@ export class SkyListColumnSelectorActionComponent implements AfterContentInit {
         [
           columnChooserItem
         ],
-        3
+        this.columnSelectorActionItemToolbarIndex
       );
     }
   }

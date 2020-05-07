@@ -10,9 +10,6 @@ import {
   ListViewGridColumnsLoadAction
 } from './load.action';
 
-import * as moment_ from 'moment';
-const moment = moment_;
-
 export class ListViewGridColumnsOrchestrator
   extends GridStateOrchestrator<AsyncList<SkyGridColumnModel>> {
   /* istanbul ignore next */
@@ -29,9 +26,9 @@ export class ListViewGridColumnsOrchestrator
     const newColumns = action.columns.map(g => new SkyGridColumnModel(g.template, g));
 
     if (action.refresh) {
-      return new AsyncList<SkyGridColumnModel>([...newColumns], moment());
+      return new AsyncList<SkyGridColumnModel>([...newColumns], new Date());
     }
 
-    return new AsyncList<SkyGridColumnModel>([...state.items, ...newColumns], moment());
+    return new AsyncList<SkyGridColumnModel>([...state.items, ...newColumns], new Date());
   }
 }
