@@ -33,6 +33,10 @@ import {
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
   SkyGridColumnModel,
+  SkyGridMessage,
+  SkyGridMessageType,
+  SkyGridRowDeleteCancelArgs,
+  SkyGridRowDeleteConfirmArgs,
   SkyGridSelectedRowsModelChange,
   SkyGridSelectedRowsSource
 } from '@skyux/grids';
@@ -63,6 +67,14 @@ import {
 
 import { ListViewGridColumnsLoadAction } from './state/columns/actions';
 import { ListViewDisplayedGridColumnsLoadAction } from './state/displayed-columns/actions';
+
+import {
+  SkyListViewGridMessage
+} from './types/list-view-grid-message';
+
+import {
+  SkyListViewGridMessageType
+} from './types/list-view-grid-message-type';
 
 @Component({
   selector: 'sky-list-view-grid',
@@ -104,6 +116,43 @@ export class SkyListViewGridComponent
   @Input()
   public highlightSearchText: boolean = true;
 
+  /**
+   * Provides an observable to send commands to the grid.
+   * The commands should respect the `SkyListViewGridMessage` type. (See below.)
+   */
+  @Input()
+  public set messageStream(stream: Subject<SkyListViewGridMessage>) {
+    if (this._messageStream) {
+      this._messageStream.unsubscribe();
+    }
+
+    this._messageStream = stream;
+
+    if (this.messageStream) {
+      this.messageStream.subscribe((message: SkyListViewGridMessage) => {
+        if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.AbortDeleteRow,
+            data: {
+              abortDeleteRow: message.data.abortDeleteRow
+            }
+          });
+        } else if (message.type === SkyListViewGridMessageType.PromptDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.PromptDeleteRow,
+            data: {
+              promptDeleteRow: message.data.promptDeleteRow
+            }
+          });
+        }
+      });
+    }
+  }
+
+  public get messageStream(): Subject<SkyListViewGridMessage> {
+    return this._messageStream;
+  }
+
   @Input()
   public rowHighlightedId: string;
 
@@ -112,6 +161,12 @@ export class SkyListViewGridComponent
 
   @Input()
   public settingsKey: string;
+
+  @Output()
+  public rowDeleteCancel = new EventEmitter<SkyGridRowDeleteCancelArgs>();
+
+  @Output()
+  public rowDeleteConfirm = new EventEmitter<SkyGridRowDeleteConfirmArgs>();
 
   @Output()
   public selectedColumnIdsChange = new EventEmitter<Array<string>>();
@@ -139,6 +194,12 @@ export class SkyListViewGridComponent
 
   public items: Observable<ListItemModel[]>;
 
+  /**
+   * Message stream for communicating with the internal grid instance
+   * @interal
+   */
+  public gridMessageStream = new Subject<SkyGridMessage>();
+
   public loading: Observable<boolean>;
 
   public sortField: Observable<ListSortFieldSelectorModel>;
@@ -156,6 +217,8 @@ export class SkyListViewGridComponent
   private columnComponents: QueryList<SkyGridColumnComponent>;
 
   private ngUnsubscribe = new Subject();
+
+  private _messageStream = new Subject<SkyListViewGridMessage>();
 
   constructor(
     state: ListState,
@@ -279,6 +342,26 @@ export class SkyListViewGridComponent
     if (this.enableMultiselect) {
       this.dispatcher.toolbarShowMultiselectToolbar(true);
     }
+
+    if (this.messageStream) {
+      this.messageStream.subscribe((message: SkyListViewGridMessage) => {
+        if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.AbortDeleteRow,
+            data: {
+              abortDeleteRow: message.data.abortDeleteRow
+            }
+          });
+        } else if (message.type === SkyListViewGridMessageType.PromptDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.PromptDeleteRow,
+            data: {
+              promptDeleteRow: message.data.promptDeleteRow
+            }
+          });
+        }
+      });
+    }
   }
 
   public ngOnDestroy() {
@@ -333,6 +416,14 @@ export class SkyListViewGridComponent
             });
         }
       });
+  }
+
+  public cancelRowDelete(args: SkyGridRowDeleteCancelArgs): void {
+    this.rowDeleteCancel.emit(args);
+  }
+
+  public confirmRowDelete(args: SkyGridRowDeleteConfirmArgs): void {
+    this.rowDeleteConfirm.emit(args);
   }
 
   public sortFieldChanged(sortField: ListSortFieldSelectorModel) {
