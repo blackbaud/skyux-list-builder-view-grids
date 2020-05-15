@@ -1,6 +1,6 @@
 {
   "name": "@skyux/list-builder-view-grids",
-  "version": "4.0.0-rc.2",
+  "version": "4.0.0",
   "description": "SKY UX list-builder-view-grids",
   "scripts": {
     "build": "skyux build-public-library --fullTemplateTypeCheck",
@@ -21,15 +21,15 @@
   },
   "homepage": "https://github.com/blackbaud/skyux-list-builder-view-grids#readme",
   "peerDependencies": {
-    "@angular/common": "^9.1.3",
-    "@angular/core": "^9.1.3",
-    "@skyux/grids": "^4.0.0-rc.2",
-    "@skyux/i18n": "^4.0.0-rc.5",
-    "@skyux/indicators": "^4.0.0-rc.4",
-    "@skyux/list-builder": "^4.0.0-rc.2",
-    "@skyux/list-builder-view-checklist": "^4.0.0-rc.1",
-    "@skyux/list-builder-common": "^4.0.0-rc.1",
-    "@skyux/modals": "^4.0.0-rc.4"
+    "@angular/common": "^9.1.7",
+    "@angular/core": "^9.1.7",
+    "@skyux/grids": "^4.0.0",
+    "@skyux/i18n": "^4.0.0",
+    "@skyux/indicators": "^4.0.0",
+    "@skyux/list-builder": "^4.0.0",
+    "@skyux/list-builder-view-checklist": "^4.0.0",
+    "@skyux/list-builder-common": "^4.0.0",
+    "@skyux/modals": "^4.0.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -61,7 +61,7 @@
     "@skyux/list-builder": "4.0.0",
     "@skyux/list-builder-common": "4.0.0",
     "@skyux/list-builder-view-checklist": "4.0.0",
-    "@skyux/list-builder-view-grids": "4.0.0-rc.2",
+    "@skyux/list-builder-view-grids": "^4.0.0-rc.2",
     "@skyux/lists": "4.0.0",
     "@skyux/lookup": "4.0.0",
     "@skyux/modals": "4.0.0",
