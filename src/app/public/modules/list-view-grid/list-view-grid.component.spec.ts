@@ -875,7 +875,7 @@ describe('List View Grid Component', () => {
       fixture.detectChanges();
     }));
 
-    it('should handle grid columns changing to the same ids', () => {
+    it('should handle grid columns changing to the same ids', async(() => {
       expect(element.queryAll(By.css('th.sky-grid-heading')).length).toBe(2);
       expect(element.query(
         By.css('th[sky-cmp-id="name"]')).nativeElement.textContent.trim()
@@ -896,9 +896,9 @@ describe('List View Grid Component', () => {
         By.css('th[sky-cmp-id="email"]')
       ).nativeElement.textContent.trim()).toBe('Email');
       expect(component.grid.selectedColumnIdsChange.emit).not.toHaveBeenCalled();
-    });
+    }));
 
-    it('should handle grid columns changing to contain a different id', (done) => {
+    it('should handle grid columns changing to contain a different id', async(() => {
       expect(element.queryAll(By.css('th.sky-grid-heading')).length).toBe(2);
       expect(element.query(
         By.css('th[sky-cmp-id="name"]')).nativeElement.textContent.trim()
@@ -909,7 +909,6 @@ describe('List View Grid Component', () => {
 
       component.grid.selectedColumnIdsChange.subscribe((newColumnIds: string[]) => {
         expect(newColumnIds).toEqual(['name', 'other']);
-        done();
       });
 
       component.changeColumnsNameAndOther();
@@ -921,9 +920,9 @@ describe('List View Grid Component', () => {
       expect(element.query(
         By.css('th[sky-cmp-id="other"]')).nativeElement.textContent.trim()
       ).toBe('Other');
-    });
+    }));
 
-    it('should handle grid columns changing to contain only a different id', (done) => {
+    it('should handle grid columns changing to contain only a different id', async(() => {
       expect(element.queryAll(By.css('th.sky-grid-heading')).length).toBe(2);
       expect(element.query(
         By.css('th[sky-cmp-id="name"]')).nativeElement.textContent.trim()
@@ -934,7 +933,6 @@ describe('List View Grid Component', () => {
 
       component.grid.selectedColumnIdsChange.subscribe((newColumnIds: string[]) => {
         expect(newColumnIds).toEqual(['other']);
-        done();
       });
 
       component.changeColumnsOther();
@@ -943,7 +941,7 @@ describe('List View Grid Component', () => {
       expect(element.query(
         By.css('th[sky-cmp-id="other"]')).nativeElement.textContent.trim()
       ).toBe('Other');
-    });
+    }));
   });
 
 });
