@@ -128,25 +128,7 @@ export class SkyListViewGridComponent
 
     this._messageStream = stream;
 
-    if (this.messageStream) {
-      this.messageStream.subscribe((message: SkyListViewGridMessage) => {
-        if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
-          this.gridMessageStream.next({
-            type: SkyGridMessageType.AbortDeleteRow,
-            data: {
-              abortDeleteRow: message.data.abortDeleteRow
-            }
-          });
-        } else if (message.type === SkyListViewGridMessageType.PromptDeleteRow) {
-          this.gridMessageStream.next({
-            type: SkyGridMessageType.PromptDeleteRow,
-            data: {
-              promptDeleteRow: message.data.promptDeleteRow
-            }
-          });
-        }
-      });
-    }
+    this.initInlineDeleteMessages();
   }
 
   public get messageStream(): Subject<SkyListViewGridMessage> {
@@ -343,25 +325,7 @@ export class SkyListViewGridComponent
       this.dispatcher.toolbarShowMultiselectToolbar(true);
     }
 
-    if (this.messageStream) {
-      this.messageStream.subscribe((message: SkyListViewGridMessage) => {
-        if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
-          this.gridMessageStream.next({
-            type: SkyGridMessageType.AbortDeleteRow,
-            data: {
-              abortDeleteRow: message.data.abortDeleteRow
-            }
-          });
-        } else if (message.type === SkyListViewGridMessageType.PromptDeleteRow) {
-          this.gridMessageStream.next({
-            type: SkyGridMessageType.PromptDeleteRow,
-            data: {
-              promptDeleteRow: message.data.promptDeleteRow
-            }
-          });
-        }
-      });
-    }
+    this.initInlineDeleteMessages();
   }
 
   public ngOnDestroy() {
@@ -464,6 +428,28 @@ export class SkyListViewGridComponent
           }));
         });
       });
+  }
+
+  private initInlineDeleteMessages(): void {
+    if (this.messageStream) {
+      this.messageStream.subscribe((message: SkyListViewGridMessage) => {
+        if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.AbortDeleteRow,
+            data: {
+              abortDeleteRow: message.data.abortDeleteRow
+            }
+          });
+        } else if (message.type === SkyListViewGridMessageType.PromptDeleteRow) {
+          this.gridMessageStream.next({
+            type: SkyGridMessageType.PromptDeleteRow,
+            data: {
+              promptDeleteRow: message.data.promptDeleteRow
+            }
+          });
+        }
+      });
+    }
   }
 
   private handleColumnChange() {
