@@ -2,7 +2,7 @@
 
 ### New features
 
-- Added a test fixture for the list view grid component to be used in consumer unit tests. [#68](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/68)
+- Added a test fixture for the list view grid component to use in consumer unit tests. [#68](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/68)
 - Updated the pipeline to transpile to the [Angular Package Format](https://docs.google.com/document/d/1CZC2rcpxffTDfRDs6p1cfbmKNLA6x5O-NtkJglDaBVs/preview). [#65](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/65)
 
 ### Breaking changes
@@ -29,7 +29,7 @@
 
 ### New features
 
-- Added a test fixture for the list view grid component to be used in consumer unit tests. [#68](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/68)
+- Added a test fixture for the list view grid component to use in consumer unit tests. [#68](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/68)
 
 # 4.0.0-rc.0 (2020-04-17)
 
