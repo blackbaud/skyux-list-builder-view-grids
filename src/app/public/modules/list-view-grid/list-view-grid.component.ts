@@ -3,20 +3,29 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  EventEmitter,
   forwardRef,
   Input,
   OnDestroy,
+  Output,
   QueryList,
-  ViewChild,
-  EventEmitter,
-  Output
+  ViewChild
 } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import {
+  Observable
+} from 'rxjs/Observable';
+
+import {
+  Subject
+} from 'rxjs/Subject';
+
 import 'rxjs/add/operator/distinctUntilChanged';
+
 import 'rxjs/add/operator/scan';
+
 import 'rxjs/add/operator/take';
+
 import 'rxjs/add/operator/takeUntil';
 
 import {
@@ -28,24 +37,23 @@ import {
 } from 'microedge-rxstate/dist';
 
 import {
-  SkyGridComponent,
   SkyGridColumnComponent,
   SkyGridColumnHeadingModelChange,
   SkyGridColumnDescriptionModelChange,
   SkyGridColumnModel,
+  SkyGridComponent,
   SkyGridMessage,
   SkyGridMessageType,
-  SkyGridRowDeleteCancelArgs,
-  SkyGridRowDeleteConfirmArgs,
   SkyGridSelectedRowsModelChange,
   SkyGridSelectedRowsSource
 } from '@skyux/grids';
 
 import {
   ListSearchModel,
-  ListStateDispatcher,
+  ListSelectedModel,
   ListState,
-  ListSelectedModel
+  ListStateDispatcher,
+  ListViewComponent
 } from '@skyux/list-builder';
 
 import {
@@ -56,17 +64,12 @@ import {
 } from '@skyux/list-builder-common';
 
 import {
-  ListViewComponent
-} from '@skyux/list-builder';
+  ListViewGridColumnsLoadAction
+} from './state/columns/actions';
 
 import {
-  GridState,
-  GridStateDispatcher,
-  GridStateModel
-} from './state';
-
-import { ListViewGridColumnsLoadAction } from './state/columns/actions';
-import { ListViewDisplayedGridColumnsLoadAction } from './state/displayed-columns/actions';
+  ListViewDisplayedGridColumnsLoadAction
+} from './state/displayed-columns/actions';
 
 import {
   SkyListViewGridMessage
@@ -75,6 +78,20 @@ import {
 import {
   SkyListViewGridMessageType
 } from './types/list-view-grid-message-type';
+
+import {
+  SkyListViewGridRowDeleteCancelArgs
+} from './types/list-view-grid-row-delete-cancel-args';
+
+import {
+  SkyListViewGridRowDeleteConfirmArgs
+} from './types/list-view-grid-row-delete-confirm-args';
+
+import {
+  GridState,
+  GridStateDispatcher,
+  GridStateModel
+} from './state';
 
 @Component({
   selector: 'sky-list-view-grid',
@@ -145,10 +162,10 @@ export class SkyListViewGridComponent
   public settingsKey: string;
 
   @Output()
-  public rowDeleteCancel = new EventEmitter<SkyGridRowDeleteCancelArgs>();
+  public rowDeleteCancel = new EventEmitter<SkyListViewGridRowDeleteCancelArgs>();
 
   @Output()
-  public rowDeleteConfirm = new EventEmitter<SkyGridRowDeleteConfirmArgs>();
+  public rowDeleteConfirm = new EventEmitter<SkyListViewGridRowDeleteConfirmArgs>();
 
   @Output()
   public selectedColumnIdsChange = new EventEmitter<Array<string>>();
@@ -382,11 +399,11 @@ export class SkyListViewGridComponent
       });
   }
 
-  public cancelRowDelete(args: SkyGridRowDeleteCancelArgs): void {
+  public cancelRowDelete(args: SkyListViewGridRowDeleteCancelArgs): void {
     this.rowDeleteCancel.emit(args);
   }
 
-  public confirmRowDelete(args: SkyGridRowDeleteConfirmArgs): void {
+  public confirmRowDelete(args: SkyListViewGridRowDeleteConfirmArgs): void {
     this.rowDeleteConfirm.emit(args);
   }
 

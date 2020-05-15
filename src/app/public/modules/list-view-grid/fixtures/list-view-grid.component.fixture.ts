@@ -2,29 +2,23 @@ import {
   Component,
   ContentChildren,
   OnInit,
-  TemplateRef,
   QueryList,
+  TemplateRef,
   ViewChild,
   ViewChildren
 } from '@angular/core';
+
+import {
+  SkyGridSelectedRowsModelChange
+} from '@skyux/grids';
 
 import {
   BehaviorSubject
 } from 'rxjs/BehaviorSubject';
 
 import {
-  SkyGridRowDeleteCancelArgs,
-  SkyGridRowDeleteConfirmArgs,
-  SkyGridSelectedRowsModelChange
-} from '@skyux/grids';
-
-import {
   Subject
 } from 'rxjs';
-
-import {
-  SkyListViewGridComponent
-} from '../list-view-grid.component';
 
 import {
   SkyListViewGridMessage
@@ -33,6 +27,18 @@ import {
 import {
   SkyListViewGridMessageType
 } from '../types/list-view-grid-message-type';
+
+import {
+  SkyListViewGridRowDeleteCancelArgs
+} from '../types/list-view-grid-row-delete-cancel-args';
+
+import {
+  SkyListViewGridRowDeleteConfirmArgs
+} from '../types/list-view-grid-row-delete-confirm-args';
+
+import {
+  SkyListViewGridComponent
+} from '../list-view-grid.component';
 
 @Component({
   selector: 'sky-test-cmp',
@@ -73,7 +79,7 @@ export class ListViewGridTestComponent implements OnInit {
     console.log(multiselectSelectionChange);
   }
 
-  public cancelRowDelete(cancelArgs: SkyGridRowDeleteCancelArgs): void {
+  public cancelRowDelete(cancelArgs: SkyListViewGridRowDeleteCancelArgs): void {
     this.gridController.next({
       type: SkyListViewGridMessageType.AbortDeleteRow,
       data: {
@@ -95,7 +101,7 @@ export class ListViewGridTestComponent implements OnInit {
     });
   }
 
-  public finishRowDelete(confirmArgs: SkyGridRowDeleteConfirmArgs): void {
+  public finishRowDelete(confirmArgs: SkyListViewGridRowDeleteConfirmArgs): void {
     return;
   }
 }
