@@ -1,6 +1,6 @@
 {
   "name": "@skyux/list-builder-view-grids",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "SKY UX list-builder-view-grids",
   "scripts": {
     "build": "skyux build-public-library --fullTemplateTypeCheck",
