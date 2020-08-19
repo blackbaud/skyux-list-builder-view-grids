@@ -1,6 +1,6 @@
 # 4.0.2 (2020-08-19)
 
-- Fixed the list view grid component render grid column components which utilize an inline template. [#89](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/89)
+- Fixed the list view grid component to render grid column components which utilize an inline template. [#89](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/89)
 
 # 4.0.1 (2020-08-06)
 
