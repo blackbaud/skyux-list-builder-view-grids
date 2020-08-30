@@ -4,12 +4,12 @@
 export enum SkyListViewGridMessageType {
 
   /**
-   * Triggers a row deletion on the list view grid
+   * Triggers the deletion of a row in the list view grid.
    */
   PromptDeleteRow = 0,
 
   /**
-   * Aborts a row deletion on the list view grid
+   * Aborts the deletion of a row in the list view grid.
    */
   AbortDeleteRow = 1
 }

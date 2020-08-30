@@ -94,6 +94,12 @@ import {
   SkyListViewGridRowDeleteConfirmArgs
 } from './types/list-view-grid-row-delete-confirm-args';
 
+/**
+ * Displays a grid for a
+ * [SKY UX-themed list of data](https://developer.blackbaud.com/skyux/components/list/overview)
+ * using the [grid component](https://developer.blackbaud.com/skyux/components/grid)
+ * .
+ */
 @Component({
   selector: 'sky-list-view-grid',
   templateUrl: './list-view-grid.component.html',
@@ -111,32 +117,59 @@ import {
 export class SkyListViewGridComponent extends ListViewComponent
   implements AfterContentInit, OnDestroy {
 
+  /**
+   * Specifies the name of the view.
+   * @required
+   */
   @Input()
   public set name(value: string) {
     this.viewName = value;
   }
 
+  /**
+   * Specifies the columns to display by default based on the ID or field of the item.
+   */
   @Input()
   public displayedColumns: Array<string> | Observable<Array<string>>;
 
+  /**
+   * Specifies the columns to hide by default based on the ID or field of the item.
+   */
   @Input()
   public hiddenColumns: Array<string> | Observable<Array<string>>;
 
+  /**
+   * Specifies how the grid fits to its parent. The valid options are `width`, which fits
+   * the grid to the parent's full width, and `scroll`, which allows the grid to exceed the
+   * parent's width. If the grid does not have enough columns to fill the parent's width, it
+   * always stretches to the parent's full width.
+   * @default width
+   */
   @Input()
   public fit: string = 'width';
 
+  /**
+   * Specifies the width of the grid.
+   */
   @Input()
   public width: number | Observable<number>;
 
+  /**
+   * Specifies the height of the grid.
+   */
   @Input()
   public height: number | Observable<number>;
 
+  /**
+   * Indicates whether to highlight search text within the grid.
+   * @default true
+   */
   @Input()
   public highlightSearchText: boolean = true;
 
   /**
    * Provides an observable to send commands to the grid.
-   * The commands should respect the `SkyListViewGridMessage` type. (See below.)
+   * The commands should respect the `SkyListViewGridMessage` type.
    */
   @Input()
   public set messageStream(stream: Subject<SkyListViewGridMessage>) {
@@ -153,21 +186,52 @@ export class SkyListViewGridComponent extends ListViewComponent
     return this._messageStream;
   }
 
+  /**
+   * Specifies the ID of the row to highlight. The ID matches the `id` property of
+   * the `data` object. Typically, this property is used in conjunction with the
+   * [flyout component](https://developer.blackbaud.com/skyux/components/flyout) to
+   * indicate the currently selected row.
+   */
   @Input()
   public rowHighlightedId: string;
 
+  /**
+   * Indicates whether to enable the multiselect feature to display a column of checkboxes
+   * on the left side of the grid. Multiselect also displays an action bar with buttons to
+   * select and clear all checkboxes. Multiselect defaults to the `id` property on the list's
+   * `data` object.
+   * @default false
+   */
   @Input()
   public enableMultiselect: boolean = false;
 
+  /**
+   * Specifies a unique key for the UI Config Service to retrieve stored settings from
+   * a database. The UI Config Service saves configuration settings for users and returns
+   * `selectedColumnIds` to preserve the columns to display and the preferred column order.
+   * For more information about the UI Config Service, see the
+   * [sticky settings documentation](https://developer.blackbaud.com/skyux/learn/get-started/advanced/sticky-settings).
+   */
   @Input()
   public settingsKey: string;
 
+  /**
+   * Fires when users cancel the deletion of a row.
+   */
   @Output()
   public rowDeleteCancel = new EventEmitter<SkyListViewGridRowDeleteCancelArgs>();
 
+  /**
+   * Fires when users confirm the deletion of a row.
+   */
   @Output()
   public rowDeleteConfirm = new EventEmitter<SkyListViewGridRowDeleteConfirmArgs>();
 
+  /**
+   * Fires when columns change. This includes changes to hide or display columns and changes
+   * to the order of columns. The event emits an array of IDs for the displayed columns that
+   * reflects the column order.
+   */
   @Output()
   public selectedColumnIdsChange = new EventEmitter<Array<string>>();
 
@@ -208,6 +272,9 @@ export class SkyListViewGridComponent extends ListViewComponent
 
   public multiselectSelectedIds: string[] = [];
 
+  /**
+   * Specifies a search function to apply on the view data.
+   */
   /* tslint:disable */
   @Input('search')
   private searchFunction: (data: any, searchText: string) => boolean;
