@@ -97,8 +97,8 @@ import {
 /**
  * Displays a grid for a
  * [SKY UX-themed list of data](https://developer.blackbaud.com/skyux/components/list/overview)
- * using the [grid component](https://developer.blackbaud.com/skyux/components/grid)
- * .
+ * using the [grid component](https://developer.blackbaud.com/skyux/components/grid).
+ * You must install `SkyListModule` as a dependency.
  */
 @Component({
   selector: 'sky-list-view-grid',
@@ -139,10 +139,9 @@ export class SkyListViewGridComponent extends ListViewComponent
   public hiddenColumns: Array<string> | Observable<Array<string>>;
 
   /**
-   * Specifies how the grid fits to its parent. The valid options are `width`, which fits
-   * the grid to the parent's full width, and `scroll`, which allows the grid to exceed the
-   * parent's width. If the grid does not have enough columns to fill the parent's width, it
-   * always stretches to the parent's full width.
+   * Specifies how the grid fits to its parent. `width` fits the grid to the parent's full
+   * width, and `scroll` allows the grid to exceed the parent's width. If the grid does not have
+   * enough columns to fill the parent's width, it always stretches to the parent's full width.
    * @default width
    */
   @Input()
@@ -207,9 +206,8 @@ export class SkyListViewGridComponent extends ListViewComponent
 
   /**
    * Specifies a unique key for the UI Config Service to retrieve stored settings from
-   * a database. The UI Config Service saves configuration settings for users and returns
-   * `selectedColumnIds` to preserve the columns to display and the preferred column order.
-   * For more information about the UI Config Service, see the
+   * a database. The service saves configuration settings for users and returns `selectedColumnIds`
+   * for the columns to display and the preferred column order. For more information, see the
    * [sticky settings documentation](https://developer.blackbaud.com/skyux/learn/get-started/advanced/sticky-settings).
    */
   @Input()
@@ -228,7 +226,7 @@ export class SkyListViewGridComponent extends ListViewComponent
   public rowDeleteConfirm = new EventEmitter<SkyListViewGridRowDeleteConfirmArgs>();
 
   /**
-   * Fires when columns change. This includes changes to hide or display columns and changes
+   * Fires when columns change. This includes changes to the displayed columns and changes
    * to the order of columns. The event emits an array of IDs for the displayed columns that
    * reflects the column order.
    */
