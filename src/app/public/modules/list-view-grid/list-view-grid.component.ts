@@ -275,7 +275,7 @@ export class SkyListViewGridComponent extends ListViewComponent
    */
   /* tslint:disable */
   @Input('search')
-  private searchFunction: (data: any, searchText: string) => boolean;
+  public searchFunction: (data: any, searchText: string) => boolean;
   /* tslint:enable */
 
   @ContentChildren(SkyGridColumnComponent)
