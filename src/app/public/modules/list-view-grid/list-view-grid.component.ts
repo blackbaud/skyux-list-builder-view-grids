@@ -272,6 +272,8 @@ export class SkyListViewGridComponent extends ListViewComponent
 
   /**
    * Specifies a search function to apply on the view data.
+   * @param data Specifies that data to search.
+   * @param searchText Specifies a text string to search for.
    */
   /* tslint:disable */
   @Input('search')
