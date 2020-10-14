@@ -33,4 +33,4 @@ import {
     ListViewGridDemoComponent
   ]
 })
-export class ListViewGridDDemoModule { }
+export class ListViewGridDemoModule { }
