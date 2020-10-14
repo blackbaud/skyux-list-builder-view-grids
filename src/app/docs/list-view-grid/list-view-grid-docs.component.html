@@ -3,49 +3,178 @@
   moduleSourceCodePath="src/app/public/modules/list-view-grid/"
   pageTitle="List view grid"
 >
-<sky-docs-demo-page-summary>
-  The list view grid component displays a grid for a <a href="https://developer.blackbaud.com/skyux/components/list/overview">SKY UX-themed list of data</a>.
-</sky-docs-demo-page-summary>
+  <sky-docs-demo-page-summary>
+    The list view grid component displays a grid for a <a href="https://developer.blackbaud.com/skyux/components/list/overview">SKY UX-themed list of data</a>.
+  </sky-docs-demo-page-summary>
 
-<sky-docs-demo>
-  See documentation for how to setup demos.
-</sky-docs-demo>
-
-<sky-docs-design-guidelines>
-  <sky-docs-demo-page-section
-    heading="Related information"
-  >
-    <sky-docs-design-guideline
-      heading="Components"
+  <sky-docs-demo>
+    <sky-list
+      [data]="data"
     >
-      <ul>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/flyout">Flyout</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/grid">Grid</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/list/overview">List overview</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/list/filters">List filters</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/list/paging">List paging</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/list/toolbar">List toolbar</a>
-        </li>
-        <li>
-          <a href="https://developer.blackbaud.com/skyux/components/list/checklist">List view checklist</a>
-        </li>
-      </ul>
-    </sky-docs-design-guideline>
-  </sky-docs-demo-page-section>
-</sky-docs-design-guidelines>
+      <sky-list-toolbar>
+        <sky-list-column-selector-action
+          [gridView]="grid"
+          (helpOpened)="onHelpOpened($event)"
+        >
+        </sky-list-column-selector-action>
+      </sky-list-toolbar>
+      <sky-list-view-grid
+        fit="scroll"
+        (selectedColumnIdsChange)="onSelectedColumnIdsChange($event)"
+        #grid
+      >
+        <sky-grid-column
+          id="contextMenuColumn"
+          [locked]="true"
+          [template]="contextMenuTemplate"
+          [width]="50"
+        >
+        </sky-grid-column>
+        <sky-grid-column
+          field="name"
+          heading="Name"
+        >
+        </sky-grid-column>
+        <sky-grid-column
+          field="email"
+          heading="Email"
+        >
+        </sky-grid-column>
+        <sky-grid-column
+          field="amount"
+          heading="Amount"
+        >
+        </sky-grid-column>
+      </sky-list-view-grid>
+    </sky-list>
+    <ng-template
+      #contextMenuTemplate
+    >
+      <sky-dropdown
+        buttonType="context-menu"
+      >
+        <sky-dropdown-menu>
+          <sky-dropdown-item>
+            <button
+              type="button"
+            >
+              Make admin
+            </button>
+          </sky-dropdown-item>
+          <sky-dropdown-item>
+            <button
+              type="button"
+            >
+              Disable
+            </button>
+          </sky-dropdown-item>
+          <sky-dropdown-item>
+            <button
+              type="button"
+            >
+              Delete
+            </button>
+          </sky-dropdown-item>
+        </sky-dropdown-menu>
+      </sky-dropdown>
+    </ng-template>
+  </sky-docs-demo>
 
-<sky-docs-code-examples>
-  See documentation for how to setup code examples.
-</sky-docs-code-examples>
+  <sky-docs-design-guidelines>
+    <sky-docs-demo-page-section
+      heading="Related information"
+    >
+      <sky-docs-design-guideline
+        heading="Components"
+      >
+        <ul>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/flyout">Flyout</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/grid">Grid</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/list/overview">List overview</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/list/filters">List filters</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/list/paging">List paging</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/list/toolbar">List toolbar</a>
+          </li>
+          <li>
+            <a href="https://developer.blackbaud.com/skyux/components/list/checklist">List view checklist</a>
+          </li>
+        </ul>
+      </sky-docs-design-guideline>
+    </sky-docs-demo-page-section>
+  </sky-docs-design-guidelines>
+
+  <sky-docs-code-examples
+    [packageDependencies]="{
+      '@blackbaud/auth-client': '*',
+      '@skyux/indicators': '*',
+      '@skyux/inline-form': '*',
+      '@skyux/list-builder': '*',
+      '@skyux/list-builder-common': '*',
+      '@skyux/list-builder-view-checklist': '*',
+      '@skyux/list-builder-view-grids': '*',
+      '@skyux/lists': '*',
+      '@skyux/lookup': '*',
+      '@skyux/grids': '*',
+      '@skyux/modals': '*',
+      '@skyux/popovers': '*',
+      'dragula': '3.7.2',
+      'ng2-dragula': '1.5.0'
+    }"
+  >
+
+    <!-- Paging -->
+    <sky-docs-code-example
+      heading="List view grid with paging"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-paging/basic"
+    ></sky-docs-code-example>
+
+    <!-- Toolbar -->
+    <sky-docs-code-example
+      heading="List view grid with basic toolbar"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-toolbar/basic"
+    ></sky-docs-code-example>
+    <sky-docs-code-example
+      heading="List view grid with custom toolbar items"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-toolbar/custom"
+    ></sky-docs-code-example>
+
+    <!-- List view grids -->
+    <sky-docs-code-example
+      heading="List view grid with list column selector"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-view-grid/column-selector"
+    ></sky-docs-code-example>
+    <sky-docs-code-example
+      heading="List view grid with templated column"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-view-grid/templated-column"
+    ></sky-docs-code-example>
+    <sky-docs-code-example
+      heading="List view grid with multiselect"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-view-grid/multiselect"
+    ></sky-docs-code-example>
+    <sky-docs-code-example
+      heading="List view grid with custom data provider"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-view-grid/data-provider"
+    ></sky-docs-code-example>
+
+    <!-- List view filters -->
+    <sky-docs-code-example
+      heading="List view grid with inline filters"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-filters/inline-filters"
+    ></sky-docs-code-example>
+    <sky-docs-code-example
+      heading="List view grid with modal filters"
+      sourceCodePath="src/app/public/plugin-resources/code-examples/list-filters/modal-filters"
+    ></sky-docs-code-example>
+  </sky-docs-code-examples>
 </sky-docs-demo-page>
