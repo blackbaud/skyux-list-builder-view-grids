@@ -1,4 +1,4 @@
-# 5.0.0-beta.0 (2021-07-14)
+# 5.0.0-beta.0 (2021-07-15)
 
 - Initial beta release.
 - Added support for `@angular/core@^12`. [#97](https://github.com/blackbaud/skyux-list-builder-view-grids/pull/97)
