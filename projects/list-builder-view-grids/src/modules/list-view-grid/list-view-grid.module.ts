@@ -15,8 +15,8 @@ import {
 } from '@skyux/grids';
 
 import {
-  SkyListViewGridResourcesModule
-} from '../shared/list-view-grid-resources.module';
+  SkyListBuilderViewGridsResourcesModule
+} from '../shared/sky-list-builder-view-grids-resources.module';
 
 import {
   SkyListColumnSelectorActionModule
@@ -34,7 +34,7 @@ import {
     CommonModule,
     SkyWaitModule,
     SkyGridModule,
-    SkyListViewGridResourcesModule
+    SkyListBuilderViewGridsResourcesModule
   ],
   exports: [
     SkyListViewGridComponent,
