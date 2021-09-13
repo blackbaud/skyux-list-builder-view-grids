@@ -37,9 +37,6 @@ import {
     SkyListToolbarModule,
     SkyListViewChecklistModule
   ],
-  exports: [
-    SkyColumnSelectorComponent
-  ],
   entryComponents: [
     SkyColumnSelectorComponent
   ]

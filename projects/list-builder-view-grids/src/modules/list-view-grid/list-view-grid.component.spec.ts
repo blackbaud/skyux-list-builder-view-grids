@@ -17,6 +17,7 @@ import {
 
 import {
   expect,
+  expectAsync,
   SkyAppTestUtility
 } from '@skyux-sdk/testing';
 
@@ -380,31 +381,26 @@ describe('List View Grid Component', () => {
         tick();
       }));
 
-      it('should be accessible', async(() => {
+      it('should pass accessibility', async () => {
+        setupTest();
+        await fixture.whenStable();
+        fixture.detectChanges();
+        await expectAsync(fixture.nativeElement).toBeAccessible();
+      });
+
+      it('should be accessible when a search is applied', async () => {
         setupTest();
 
-        fixture.whenStable().then(() => {
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        state.pipe(take(1)).subscribe(async () => {
+          dispatcher.searchSetText('searchText');
+          await fixture.whenStable();
           fixture.detectChanges();
-          expect(fixture.nativeElement).toBeAccessible();
+          await expectAsync(fixture.nativeElement).toBeAccessible();
         });
-      }));
-
-      it('should be accessible when a search is applied', async(() => {
-        setupTest();
-
-        fixture.whenStable().then(() => {
-          fixture.detectChanges();
-
-          state.pipe(take(1)).subscribe(() => {
-            dispatcher.searchSetText('searchText');
-
-            fixture.whenStable().then(() => {
-              fixture.detectChanges();
-              expect(fixture.nativeElement).toBeAccessible();
-            });
-          });
-        });
-      }));
+      });
 
       describe('Models and State', () => {
         it('should run ListViewGridColumnsLoadAction action', async(() => {

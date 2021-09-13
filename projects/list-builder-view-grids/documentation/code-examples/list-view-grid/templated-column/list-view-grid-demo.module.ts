@@ -13,7 +13,7 @@ import {
 
 import {
   SkyListViewGridModule
-} from '@skyux/list-builder-view-grids';
+} from 'projects/list-builder-view-grids/src/public-api';
 
 import {
   SkyDropdownModule

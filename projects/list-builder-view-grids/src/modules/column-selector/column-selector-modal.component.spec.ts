@@ -1,5 +1,4 @@
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   inject,
@@ -12,7 +11,7 @@ import {
 } from '@angular/router/testing';
 
 import {
-  expect
+  expect, expectAsync
 } from '@skyux-sdk/testing';
 
 import {
@@ -141,12 +140,10 @@ describe('Column selector component', () => {
     ]);
   }));
 
-  it('should pass accessibility', async(() => {
+  it('should pass accessibility', async () => {
     nativeElement.querySelector('button').click();
-
+    await fixture.whenStable();
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(fixture.nativeElement).toBeAccessible();
-    });
-  }));
+    await expectAsync(fixture.nativeElement).toBeAccessible();
+  });
 });

@@ -22,7 +22,7 @@ import {
 } from '@angular/router/testing';
 
 import {
-  expect
+  expect, expectAsync
 } from '@skyux-sdk/testing';
 
 import {
@@ -246,12 +246,11 @@ describe('List column selector action', () => {
       });
     }));
 
-    it('should pass accessibility', async(() => {
+    it('should pass accessibility', async () => {
+      await fixture.whenStable();
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(fixture.nativeElement).toBeAccessible();
-      });
-    }));
+      await expectAsync(fixture.nativeElement).toBeAccessible();
+    });
   });
 
   describe('dropdown', () => {
@@ -385,13 +384,12 @@ describe('List column selector action', () => {
       tick();
     }));
 
-    it('should pass accessibility', async(() => {
+    it('should pass accessibility', async () => {
       toggleSecondaryActionsDropdownAsync();
 
+      await fixture.whenStable();
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(fixture.nativeElement).toBeAccessible();
-      });
-    }));
+      await expectAsync(fixture.nativeElement).toBeAccessible();
+    });
   });
 });
