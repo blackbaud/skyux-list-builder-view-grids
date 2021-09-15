@@ -5,6 +5,7 @@ import {
   tick,
   TestBed
 } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   RouterTestingModule
@@ -38,6 +39,7 @@ describe('Column selector component', () => {
         ColumnSelectorTestComponent
       ],
       imports: [
+        NoopAnimationsModule,
         RouterTestingModule,
         SkyColumnSelectorModule,
         SkyModalModule

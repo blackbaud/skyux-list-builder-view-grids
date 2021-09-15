@@ -172,6 +172,7 @@ export class SkyListViewGridComponent extends ListViewComponent
    */
   @Input()
   public set messageStream(stream: Subject<SkyListViewGridMessage>) {
+    /* istanbul ignore else */
     if (this._messageStream) {
       this._messageStream.unsubscribe();
     }
@@ -237,8 +238,8 @@ export class SkyListViewGridComponent extends ListViewComponent
   public gridComponent: SkyGridComponent;
 
   public get gridHeight(): Observable<number> {
+    /* istanbul ignore next */
     return (typeof this.height === 'number')
-      /* istanbul ignore next */
       ? observableOf(this.height)
       : this.height;
   }
@@ -275,10 +276,9 @@ export class SkyListViewGridComponent extends ListViewComponent
    * @param data Specifies the data to search.
    * @param searchText Specifies a text string to search for.
    */
-  /* tslint:disable */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('search')
   public searchFunction: (data: any, searchText: string) => boolean;
-  /* tslint:enable */
 
   @ContentChildren(SkyGridColumnComponent)
   private columnComponents: QueryList<SkyGridColumnComponent>;
@@ -316,6 +316,7 @@ export class SkyListViewGridComponent extends ListViewComponent
         this.multiselectSelectedIds = selectedIds;
       });
 
+    /* istanbul ignore next */
     if (this.columnComponents.length === 0) {
       throw new Error('Grid view requires at least one sky-grid-column to render.');
     }
@@ -372,6 +373,7 @@ export class SkyListViewGridComponent extends ListViewComponent
       distinctUntilChanged(this.arraysEqual)
     )
       .subscribe(columns => {
+        /* istanbul ignore else */
         if (this.hiddenColumns) {
           getValue(this.hiddenColumns, (hiddenColumns: string[]) => {
             this.gridDispatcher.next(
@@ -388,6 +390,7 @@ export class SkyListViewGridComponent extends ListViewComponent
           });
 
         } else if (this.displayedColumns) {
+          /* istanbul ignore next */
           getValue(this.displayedColumns, (displayedColumns: string[]) => {
             this.gridDispatcher.next(
               new ListViewDisplayedGridColumnsLoadAction(
@@ -528,6 +531,7 @@ export class SkyListViewGridComponent extends ListViewComponent
   }
 
   private initInlineDeleteMessages(): void {
+    /* istanbul ignore next */
     if (this.messageStream) {
       this.messageStream.subscribe((message: SkyListViewGridMessage) => {
         if (message.type === SkyListViewGridMessageType.AbortDeleteRow) {
@@ -637,6 +641,7 @@ export class SkyListViewGridComponent extends ListViewComponent
     }
 
     for (let i = 0; i < previousValue.length; i++) {
+      /* istanbul ignore if */
       if (previousValue[i] !== newValue[i]) {
         this.selectedColumnIdsChange.emit(newValue);
         return false;

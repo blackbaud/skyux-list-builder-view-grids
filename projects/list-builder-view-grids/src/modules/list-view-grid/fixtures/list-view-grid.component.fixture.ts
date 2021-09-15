@@ -42,9 +42,9 @@ import {
 
 @Component({
   selector: 'sky-test-cmp',
-  template: require('./list-view-grid.component.fixture.html')
+  templateUrl: './list-view-grid.component.fixture.html'
 })
-export class ListViewGridTestComponent implements OnInit {
+export class ListViewGridFixtureComponent implements OnInit {
   public hiddenColumns: string[] = ['hiddenCol1', 'hiddenCol2'];
   public asyncHeading = new BehaviorSubject<string>('');
   public asyncDescription = new BehaviorSubject<string>('');
