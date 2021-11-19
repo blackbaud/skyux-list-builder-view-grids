@@ -1,19 +1,18 @@
+import { Component } from '@angular/core';
 import {
-  Component
-} from '@angular/core';
-import { SkyListViewGridMessage, SkyListViewGridRowDeleteCancelArgs, SkyListViewGridRowDeleteConfirmArgs, SkyListViewGridMessageType } from 'projects/list-builder-view-grids/src/public-api';
+  SkyListViewGridMessage,
+  SkyListViewGridRowDeleteCancelArgs,
+  SkyListViewGridRowDeleteConfirmArgs,
+  SkyListViewGridMessageType,
+} from 'projects/list-builder-view-grids/src/public-api';
 
-import {
-  BehaviorSubject,
-  Subject
-} from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list-view-grid-visual',
-  templateUrl: './list-view-grid-visual.component.html'
+  templateUrl: './list-view-grid-visual.component.html',
 })
 export class ListViewGridTestComponent {
-
   public gridController = new Subject<SkyListViewGridMessage>();
 
   public itemSubject: BehaviorSubject<any> = new BehaviorSubject([]);
@@ -31,7 +30,12 @@ export class ListViewGridTestComponent {
     { id: '4', column1: 404, column2: 'Grape', column3: 'George eats grapes' },
     { id: '5', column1: 505, column2: 'Banana', column3: 'Becky eats bananas' },
     { id: '6', column1: 606, column2: 'Lemon', column3: 'Larry eats lemons' },
-    { id: '7', column1: 707, column2: 'Strawberry', column3: 'Sally eats strawberries' }
+    {
+      id: '7',
+      column1: 707,
+      column2: 'Strawberry',
+      column3: 'Sally eats strawberries',
+    },
   ];
 
   constructor() {
@@ -46,24 +50,33 @@ export class ListViewGridTestComponent {
     console.log(event);
   }
 
-  public onRowDeleteCancel(cancelArgs: SkyListViewGridRowDeleteCancelArgs): void {
+  public onRowDeleteCancel(
+    cancelArgs: SkyListViewGridRowDeleteCancelArgs
+  ): void {
     this.gridController.next({
       type: SkyListViewGridMessageType.AbortDeleteRow,
       data: {
         abortDeleteRow: {
-          id: cancelArgs.id
-        }
-      }
+          id: cancelArgs.id,
+        },
+      },
     });
   }
 
-  public onRowDeleteConfirm(confirmArgs: SkyListViewGridRowDeleteConfirmArgs): void {
-    const removeIndex = this.defaultItems.map(item => { return item.id; }).indexOf(confirmArgs.id);
+  public onRowDeleteConfirm(
+    confirmArgs: SkyListViewGridRowDeleteConfirmArgs
+  ): void {
+    const removeIndex = this.defaultItems
+      .map((item) => {
+        return item.id;
+      })
+      .indexOf(confirmArgs.id);
 
     if (removeIndex) {
       setTimeout(() => {
-        this.defaultItems = this.defaultItems
-          .filter((data: any) => data.id !== confirmArgs.id);
+        this.defaultItems = this.defaultItems.filter(
+          (data: any) => data.id !== confirmArgs.id
+        );
         this.itemSubject.next(this.defaultItems);
         console.log('Item with id ' + confirmArgs.id + ' has been deleted.');
       }, 1000);
@@ -75,9 +88,9 @@ export class ListViewGridTestComponent {
       type: SkyListViewGridMessageType.PromptDeleteRow,
       data: {
         promptDeleteRow: {
-          id: id
-        }
-      }
+          id: id,
+        },
+      },
     });
   }
 }

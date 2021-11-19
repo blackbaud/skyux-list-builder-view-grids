@@ -1,15 +1,7 @@
-<div
-  class="sky-padding-even-default"
-  id="screenshot-list-view-grid"
->
-  <sky-list
-    [data]="items"
-    [defaultView]="grid"
-  >
+<div class="sky-padding-even-default" id="screenshot-list-view-grid">
+  <sky-list [data]="items" [defaultView]="grid">
     <sky-list-toolbar>
-      <sky-list-column-selector-action
-        [gridView]="grid"
-      >
+      <sky-list-column-selector-action [gridView]="grid">
       </sky-list-column-selector-action>
     </sky-list-toolbar>
 
@@ -41,9 +33,7 @@
   </sky-list>
 
   <p>
-    <button
-      id="highlight-row-button"
-      (click)="onToggleRowHighlightClick()">
+    <button id="highlight-row-button" (click)="onToggleRowHighlightClick()">
       Toggle row highlight
     </button>
   </p>
@@ -60,9 +50,7 @@
     (selectedIdsChange)="onSelectedIdsChange($event)"
   >
     <sky-list-toolbar>
-      <sky-list-column-selector-action
-        [gridView]="gridWithMultiselect"
-      >
+      <sky-list-column-selector-action [gridView]="gridWithMultiselect">
       </sky-list-column-selector-action>
     </sky-list-toolbar>
 
@@ -101,14 +89,9 @@
   class="sky-padding-even-default"
   id="screenshot-list-view-grid-with-multiselect"
 >
-  <sky-list
-    [data]="items"
-    [defaultView]="gridWithInlineDelete"
-  >
+  <sky-list [data]="items" [defaultView]="gridWithInlineDelete">
     <sky-list-toolbar>
-      <sky-list-column-selector-action
-        [gridView]="gridWithInlineDelete"
-      >
+      <sky-list-column-selector-action [gridView]="gridWithInlineDelete">
       </sky-list-column-selector-action>
     </sky-list-toolbar>
 
@@ -126,11 +109,10 @@
         [locked]="true"
         [isSortable]="false"
       >
-        <ng-template
-          let-row="row"
-        >
+        <ng-template let-row="row">
           <!-- The `ngIf` here was added to verify that templates with Angular controls work when built. -->
-          <button *ngIf="row.id"
+          <button
+            *ngIf="row.id"
             type="button"
             (click)="onDeleteItemClick(row.id)"
           >

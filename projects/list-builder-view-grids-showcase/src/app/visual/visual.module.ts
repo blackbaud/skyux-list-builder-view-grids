@@ -9,13 +9,8 @@ import { SkyListViewGridModule } from 'projects/list-builder-view-grids/src/publ
 import { ListViewGridTestComponent } from './list-view-grid/list-view-grid-visual.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-  declarations: [
-    VisualComponent,
-    ListViewGridTestComponent
-  ],
+  declarations: [VisualComponent, ListViewGridTestComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,7 +19,7 @@ import { RouterModule } from '@angular/router';
     SkyDropdownModule,
     SkyListModule,
     SkyListViewGridModule,
-    SkyListToolbarModule
-  ]
+    SkyListToolbarModule,
+  ],
 })
-export class VisualModule { }
+export class VisualModule {}
