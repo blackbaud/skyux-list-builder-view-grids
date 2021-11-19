@@ -1,15 +1,8 @@
-import {
-  by,
-  element
-} from 'protractor';
+import { by, element } from 'protractor';
 
-import {
-  expect,
-  SkyHostBrowser
-} from '@skyux-sdk/e2e';
+import { expect, SkyHostBrowser } from '@skyux-sdk/e2e';
 
 describe('List view grid', () => {
-
   beforeEach(async () => {
     await SkyHostBrowser.get('visual/list-view-grid');
     await SkyHostBrowser.setWindowBreakpoint('lg');
@@ -18,7 +11,7 @@ describe('List view grid', () => {
   it('should match the previous screenshot', async (done) => {
     await SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-lg'
+      screenshotName: 'list-view-grid-lg',
     });
   });
 
@@ -26,7 +19,7 @@ describe('List view grid', () => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
     await SkyHostBrowser.scrollTo('#screenshot-list-view-grid');
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-xs'
+      screenshotName: 'list-view-grid-xs',
     });
   });
 
@@ -36,7 +29,7 @@ describe('List view grid', () => {
     await element(by.css('[sky-cmp-id="column-chooser"] button')).click();
 
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-column-chooser-lg'
+      screenshotName: 'list-view-grid-column-chooser-lg',
     });
   });
 
@@ -47,7 +40,7 @@ describe('List view grid', () => {
     await element(by.css('[sky-cmp-id="column-chooser"] button')).click();
 
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-column-chooser-xs'
+      screenshotName: 'list-view-grid-column-chooser-xs',
     });
   });
 
@@ -57,7 +50,7 @@ describe('List view grid', () => {
     await element(by.css('#highlight-row-button')).click();
 
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-highlighted-row-lg'
+      screenshotName: 'list-view-grid-highlighted-row-lg',
     });
   });
 
@@ -68,24 +61,32 @@ describe('List view grid', () => {
     await element(by.css('#highlight-row-button')).click();
 
     expect('#screenshot-list-view-grid').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-highlighted-row-xs'
+      screenshotName: 'list-view-grid-highlighted-row-xs',
     });
   });
 
   it('should match the previous screenshot with multiselect enabled', async (done) => {
-    await SkyHostBrowser.scrollTo('#screenshot-list-view-grid-with-multiselect');
+    await SkyHostBrowser.scrollTo(
+      '#screenshot-list-view-grid-with-multiselect'
+    );
 
-    expect('#screenshot-list-view-grid-with-multiselect').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-with-multiselect'
+    expect(
+      '#screenshot-list-view-grid-with-multiselect'
+    ).toMatchBaselineScreenshot(done, {
+      screenshotName: 'list-view-grid-with-multiselect',
     });
   });
 
   it('should match the previous screenshot with multiselect enabled (screen: xs)', async (done) => {
     await SkyHostBrowser.setWindowBreakpoint('xs');
-    await SkyHostBrowser.scrollTo('#screenshot-list-view-grid-with-multiselect');
+    await SkyHostBrowser.scrollTo(
+      '#screenshot-list-view-grid-with-multiselect'
+    );
 
-    expect('#screenshot-list-view-grid-with-multiselect').toMatchBaselineScreenshot(done, {
-      screenshotName: 'list-view-grid-with-multiselect-xs'
+    expect(
+      '#screenshot-list-view-grid-with-multiselect'
+    ).toMatchBaselineScreenshot(done, {
+      screenshotName: 'list-view-grid-with-multiselect-xs',
     });
   });
 });
