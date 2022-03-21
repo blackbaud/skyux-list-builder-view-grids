@@ -96,8 +96,8 @@ import {
 
 /**
  * Displays a grid for a
- * [SKY UX-themed list of data](https://developer.blackbaud.com/skyux/components/list/overview)
- * using the [grid component](https://developer.blackbaud.com/skyux/components/grid).
+ * [SKY UX-themed list of data](https://developer.blackbaud.com/skyux-v4/components/list/overview)
+ * using the [grid component](https://developer.blackbaud.com/skyux-v4/components/grid).
  * You must install `SkyListModule` as a dependency.
  */
 @Component({
@@ -188,7 +188,7 @@ export class SkyListViewGridComponent extends ListViewComponent
   /**
    * Specifies the ID of the row to highlight. The ID matches the `id` property of
    * the `data` object. Typically, this property is used in conjunction with the
-   * [flyout component](https://developer.blackbaud.com/skyux/components/flyout) to
+   * [flyout component](https://developer.blackbaud.com/skyux-v4/components/flyout) to
    * indicate the currently selected row.
    */
   @Input()
@@ -208,7 +208,7 @@ export class SkyListViewGridComponent extends ListViewComponent
    * Specifies a unique key for the UI Config Service to retrieve stored settings from
    * a database. The service saves configuration settings for users and returns `selectedColumnIds`
    * for the columns to display and the preferred column order. For more information, see the
-   * [sticky settings documentation](https://developer.blackbaud.com/skyux/learn/get-started/advanced/sticky-settings).
+   * [sticky settings documentation](https://developer.blackbaud.com/skyux-v4/learn/get-started/advanced/sticky-settings).
    */
   @Input()
   public settingsKey: string;
